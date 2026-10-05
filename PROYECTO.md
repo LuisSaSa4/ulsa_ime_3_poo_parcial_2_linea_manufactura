@@ -187,6 +187,7 @@ El equipo debe hacer **fork** de este repositorio y trabajar sobre su fork.
 | `PROYECTO.md` | Esta guía |
 | `README.md` | Plantilla del equipo: integrantes, asignación de bloques, cómo compilar, diagrama general, cálculo a mano |
 | `include/Maquina.h` | Interfaz de la clase base, sin implementación |
+| `src/main.cpp` | Esqueleto del programa principal, con los pasos del escenario |
 | `docs/PLANTILLA_CLASE.md` | Plantilla de la documentación individual |
 | `docs/mejoras/PLANTILLA_MEJORA.md` | Plantilla de la propuesta de mejora |
 | `.gitignore`, `.vscode/settings.json` | Configuración del entorno |
