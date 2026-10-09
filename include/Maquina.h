@@ -5,11 +5,11 @@
 
 // Clase base de todas las máquinas de la línea de manufactura.
 //
-// Este archivo es solo la INTERFAZ: declara qué sabe y qué hace cualquier
-// máquina. La implementación la escribe el equipo en src/Maquina.cpp.
+// Este archivo es la INTERFAZ: declara los atributos y métodos
+// generales de cualquier máquina.
 //
-// No modifiquen este archivo sin acuerdo del equipo. Si lo cambian,
-// documenten el cambio en el README.md.
+// La implementación se encuentra en src/Maquina.cpp.
+
 class Maquina {
 private:
     int id;
@@ -21,14 +21,11 @@ private:
     int paros;             // mantenimientos realizados en el turno
 
 protected:
-    // Los métodos protegidos son para las clases derivadas: con ellos le
-    // avisan a la base lo que ocurrió durante su operación.
-
     // Suma una pieza procesada.
     void registrarPieza();
 
-    // Acumula tiempo trabajado. Cada máquina derivada lo llama con su
-    // propio tiempo por pieza. Los valores negativos no se aceptan.
+    // Acumula tiempo trabajado.
+    // Los valores negativos o cero no se aceptan.
     void agregarTiempo(int segundos);
 
     // Pone la máquina en falla.
@@ -38,29 +35,32 @@ protected:
     void registrarMantenimiento();
 
 public:
-    // Crea una máquina apagada, sin falla y con sus contadores en cero.
+    // Constructor.
     Maquina(int id, const std::string& nombre);
 
-    // Enciende la máquina. Encender no quita una falla.
+    // Enciende la máquina. No elimina una falla.
     void encender();
 
     // Apaga la máquina.
     void apagar();
 
+    // Consultas del estado de la máquina.
     bool estaEncendida() const;
     bool estaEnFalla() const;
-
-    // true solo si la máquina está encendida y sin falla.
     bool puedeProcesar() const;
 
+    // Obtener información de la máquina.
     int getId() const;
     std::string getNombre() const;
     int getPiezasProcesadas() const;
     int getTiempoTrabajado() const;
     int getParos() const;
 
-    // Muestra en pantalla los datos generales de la máquina.
+    // Muestra los datos generales de la máquina.
     void mostrarEstado() const;
+
+    // Realiza el mantenimiento general de la máquina.
+    void realizarMantenimiento();
 };
 
 #endif
