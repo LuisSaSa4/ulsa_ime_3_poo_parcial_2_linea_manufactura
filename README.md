@@ -2,8 +2,6 @@
 
 Proyecto del Parcial 2 de Programación Orientada a Objetos.
 
-La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla antes de empezar.
-
 ## 1. Equipo
 
 | Bloque | Matrícula | Nombre | Usuario de GitHub | Máquina | Componente |
@@ -12,14 +10,19 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 | 2 | | | | | |
 | 3 | | | | | |
 | 4 | | | | | |
-| 5 | | | | | |
-| 6 (solo equipo de seis) | | | | | |
+| 5 |25218 |Néstor Hiram López Valdovinos |nestor-lopez-07 |Fresadora |Husillo |
+| 6 | | | | | |
 
 ## 2. Orden de la línea
-
-Escriban el orden en que una pieza recorre las estaciones.
-
-[Inserta aquí tu respuesta]
+1. Cortadora Laser
+2. Banda Transportadora
+3. Torno CNC
+4. Banda Transportadora
+5. Fresadora
+6. Robot Soldador
+7. Banda Transportadora
+8. Estación de Inspección
+9. Banda Transportadora
 
 ## 3. Cómo compilar y ejecutar
 
