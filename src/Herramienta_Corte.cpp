@@ -1,8 +1,8 @@
-// HerramientaDeCorte.cpp
+// Herramienta_Corte.cpp
  
-#include "HerramientaDeCorte.h"
+#include "Herramienta_Corte.h"
  
-HerramientaDeCorte::HerramientaDeCorte(int vidaInicial)
+Herramienta_Corte::Herramienta_Corte(int vidaInicial)
     : desgaste_(0.0) {
     // Validacion: la vida util no puede ser 0 ni negativa
     if (vidaInicial > 0) {
@@ -12,7 +12,7 @@ HerramientaDeCorte::HerramientaDeCorte(int vidaInicial)
     }
 }
  
-bool HerramientaDeCorte::estaDesgastada() const {
+bool Herramienta_Corte::estaDesgastada() const {
     // Esta desgastada cuando el desgaste alcanza la vida util
     if (desgaste_ >= vidaUtil_) {
         return true;
@@ -20,19 +20,19 @@ bool HerramientaDeCorte::estaDesgastada() const {
     return false;
 }
  
-void HerramientaDeCorte::usar() {
+void Herramienta_Corte::usar() {
     desgaste_ = desgaste_ + 1.0;
 }
  
-void HerramientaDeCorte::restaurar() {
+void Herramienta_Corte::restaurar() {
     desgaste_ = 0.0;
 }
  
-int HerramientaDeCorte::getVidaUtil() const {
+int Herramienta_Corte::getVidaUtil() const {
     return vidaUtil_;
 }
  
-double HerramientaDeCorte::getDesgaste() const {
+double Herramienta_Corte::getDesgaste() const {
     return desgaste_;
 }
  

@@ -1,4 +1,3 @@
-
 // Fresadora.h
 // Maquina derivada de Maquina. Su operacion es ranurar la pieza.
  
@@ -7,14 +6,14 @@
  
 #include <string>
 #include "Maquina.h"
-#include "HerramientaDeCorte.h"
+#include "Herramienta_Corte.h"
  
 class Fresadora : public Maquina {
 private:
     int tiempoPorPieza_;        // Segundos que tarda por pieza (mayor a 0)
     double profundidadRanura_;  // En mm, entre 0.5 y 20
     int velocidadRpm_;          // Entre 500 y 12000
-    HerramientaDeCorte herramienta_;  // Composicion: la fresadora TIENE una herramienta
+    Herramienta_Corte herramienta_;  // Composicion: la fresadora TIENE una herramienta
  
 public:
     // Constructor. Los ultimos 4 datos tienen valor por defecto,
@@ -27,10 +26,10 @@ public:
     void ranurar();
     int piezasRestantesHerramienta() const;
     bool herramientaDesgastada() const;
+    void realizarMantenimiento();
  
-    // Metodos redefinidos de Maquina
-    void mostrarEstado() const override;
-    void realizarMantenimiento() override;
+    // Metodo redefinido de Maquina (misma firma que en la base)
+    void mostrarEstado() const;
 };
  
 #endif

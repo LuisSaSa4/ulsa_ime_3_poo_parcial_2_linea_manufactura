@@ -1,4 +1,3 @@
-
 // Fresadora.cpp
  
 #include "Fresadora.h"
@@ -37,7 +36,7 @@ Fresadora::Fresadora(int id, const std::string& nombre,
 void Fresadora::ranurar() {
     // Si esta apagada o en falla, rechaza la operacion
     if (puedeProcesar() == false) {
-        std::cout << "[Fresadora] Operacion rechazada: apagada o en falla.\n";
+        std::cout << "[" << getNombre() << "] Operacion rechazada: apagada o en falla.\n";
         return;
     }
  
@@ -48,7 +47,7 @@ void Fresadora::ranurar() {
     // Si esta pieza agoto la herramienta, la maquina entra en falla
     if (herramientaDesgastada()) {
         reportarFalla();
-        std::cout << "[Fresadora] Herramienta desgastada: FALLA.\n";
+        std::cout << "[" << getNombre() << "] Herramienta desgastada: FALLA.\n";
     }
 }
  
@@ -88,6 +87,5 @@ void Fresadora::mostrarEstado() const {
 void Fresadora::realizarMantenimiento() {
     herramienta_.restaurar();
     registrarMantenimiento();  // La base quita la falla y cuenta el paro
-    std::cout << "[Fresadora] Mantenimiento: herramienta cambiada.\n";
+    std::cout << "[" << getNombre() << "] Mantenimiento: herramienta cambiada.\n";
 }
- 
