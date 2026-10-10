@@ -1,3 +1,4 @@
+
 #ifndef MAQUINA_H
 #define MAQUINA_H
 
@@ -14,11 +15,11 @@ class Maquina {
 private:
     int id;
     std::string nombre;
-    bool encendida;        // true si la máquina está encendida
-    bool enFalla;          // true si la máquina está en falla
-    int piezasProcesadas;  // piezas procesadas en el turno
-    int tiempoTrabajado;   // segundos trabajados en el turno
-    int paros;             // mantenimientos realizados en el turno
+    bool encendida;
+    bool enFalla;
+    int piezasProcesadas;
+    int tiempoTrabajado;
+    int paros;
 
 protected:
     // Suma una pieza procesada.
@@ -37,6 +38,10 @@ protected:
 public:
     // Constructor.
     Maquina(int id, const std::string& nombre);
+
+    // Destructor virtual para permitir la destrucción correcta
+    // de objetos de clases derivadas.
+    virtual ~Maquina() = default;
 
     // Enciende la máquina. No elimina una falla.
     void encender();
@@ -57,10 +62,14 @@ public:
     int getParos() const;
 
     // Muestra los datos generales de la máquina.
-    void mostrarEstado() const;
+    // Es virtual para permitir que las clases derivadas
+    // muestren también la información de sus propios atributos.
+    virtual void mostrarEstado() const;
 
     // Realiza el mantenimiento general de la máquina.
-    void realizarMantenimiento();
+    // Las clases derivadas pueden redefinir este método
+    // para restaurar primero sus propios componentes.
+    virtual void realizarMantenimiento();
 };
 
 #endif

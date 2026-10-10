@@ -1,4 +1,6 @@
+
 #include "Maquina.h"
+
 #include <iostream>
 
 using namespace std;
@@ -66,7 +68,7 @@ int Maquina::getParos() const {
 
 // Registrar una pieza procesada.
 void Maquina::registrarPieza() {
-    piezasProcesadas++;
+    ++piezasProcesadas;
 }
 
 // Agregar tiempo de trabajo.
@@ -84,7 +86,7 @@ void Maquina::reportarFalla() {
 // Registrar el mantenimiento realizado.
 void Maquina::registrarMantenimiento() {
     enFalla = false;
-    paros++;
+    ++paros;
 }
 
 // Realizar el mantenimiento general de la máquina.
