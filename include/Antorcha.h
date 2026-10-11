@@ -1,5 +1,5 @@
 #ifndef ANTORCHA_H
-#define ANTORCHA_h
+#define ANTORCHA_H
 
 class Antorcha{
     private:
