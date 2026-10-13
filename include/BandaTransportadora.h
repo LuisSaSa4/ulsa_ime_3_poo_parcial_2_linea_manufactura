@@ -8,6 +8,23 @@
 class BandaTransportadora : public Maquina {
 private:
     Motor motor;              // composición
-    double velocidadBanda;    // valor km/h o m/s???
-    double desgasteBanda;     // desgaste acumulado ****INDIVIDUAl*****
+    int tiempoPorPieza;      // segundos por pieza
+    int piezasTransportadas;   //contador INDIVIDUAL de piezas
 
+   public:
+    BandaTransportadora(int id,
+                        const std::string& nombre,
+                        int tiempoPorPieza,
+                        int vidaUtil);
+
+    void procesarPieza() override;
+    void mostrarEstado() const override;
+    void realizarMantenimiento() override;
+
+    // Métodos propios
+    int getPiezasTransportadas() const;
+    int getTiempoPorPieza() const;
+    int getVidaMotor() const;
+};
+
+#endif
