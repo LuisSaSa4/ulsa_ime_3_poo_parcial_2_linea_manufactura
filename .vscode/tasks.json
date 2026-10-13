@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cmake",
+			"label": "CMake: compilación",
+			"command": "build",
+			"targets": [
+				"[N/A - Seleccionar kit]"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "Tarea compilación plantilla de CMake"
+		}
+	]
+}
