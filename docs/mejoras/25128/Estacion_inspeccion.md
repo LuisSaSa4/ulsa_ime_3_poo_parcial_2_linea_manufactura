@@ -12,7 +12,7 @@ EstacionInspeccion representa la estación de inspección de la línea de manufa
 
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
-[Inserta aquí tu respuesta]
+Su componente es el Sensor. Lleva una calibración que se pierde con cada medición. Es una relación de composición: el sensor es un atributo (no un apuntador) de la estación, se crea en su constructor y se destruye junto con ella. Un sensor no tiene sentido por sí solo en la planta, porque solo se desgasta y se recalibra cuando la estación lo usa para medir piezas.
 
 ## 2. Decisiones de diseño
 
