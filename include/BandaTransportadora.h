@@ -17,7 +17,7 @@ private:
                         int tiempoPorPieza,
                         int vidaUtil);
 
-    void procesarPieza() override;
+    void procesarPieza() ;
     void mostrarEstado() const override;
     void realizarMantenimiento() override;
 
