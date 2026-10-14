@@ -55,4 +55,8 @@ int BandaTransportadora::getTiempoPorPieza() const {
     return tiempoPorPieza;
 }
 
+int BandaTransportadora::getVidaMotor() const {
+    return motor.getVidaUtil();
+}
+
 
