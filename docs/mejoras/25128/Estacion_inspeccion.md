@@ -8,7 +8,7 @@
 
 **¿Qué máquina representa tu clase y qué operación hace sobre la pieza?**
 
-[Inserta aquí tu respuesta]
+EstacionInspeccion representa la estación de inspección de la línea de manufactura. Su operación es medir la pieza: cuando la pieza llega a la estación, el sensor la mide y la estación registra que la procesó. Cada pieza tarda un tiempo propio de segundosPorPieza segundos, y la medición se hace con una tolerancia de toleranciaMm milímetros.
 
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
