@@ -1,26 +1,26 @@
 #include "Husillo.h"
 
-Husillo::Husillo(int vidaMax) : vidaUtilMaxima(vidaMax), desgasteActual(0) {}
+Husillo::Husillo(double vidaUtilInicial) : vidaUtil(vidaUtilInicial), desgaste(0.0) {}
 
-void Husillo::desgastar(int cantidad) {
-    desgasteActual += cantidad;
-    if (desgasteActual > vidaUtilMaxima) {
-        desgasteActual = vidaUtilMaxima;
+void Husillo::usar(double cantidad) {
+    desgaste += cantidad;
+    if (desgaste > vidaUtil) {
+        desgaste = vidaUtil;
     }
 }
 
-void Husillo::restaurar() {
-    desgasteActual = 0;
+void Husillo::darMantenimiento() {
+    desgaste = 0.0;
 }
 
-bool Husillo::estaDañado() const {
-    return desgasteActual >= vidaUtilMaxima;
+bool Husillo::estaDesgastado() const {
+    return desgaste >= vidaUtil;
 }
 
-int Husillo::getDesgasteActual() const {
-    return desgasteActual;
+double Husillo::getVidaUtil() const {
+    return vidaUtil;
 }
 
-int Husillo::getVidaUtilMaxima() const {
-    return vidaUtilMaxima;
+double Husillo::getDesgaste() const {
+    return desgaste;
 }

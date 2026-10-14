@@ -11,7 +11,7 @@ void TornoCNC::ajustarVelocidad(double nuevaVelocidad) {
 }
 
 void TornoCNC::cilindrar() {
-    std::cout << "El Torno CNC " << getNombre() << " está cilindrando la pieza a " << velocidadHusillo << " RPM.\n";
+    std::cout << "El Torno CNC " << getNombre() << " está cilindrando a " << velocidadHusillo << " RPM.\n";
 }
 
 void TornoCNC::procesarPieza() {
@@ -22,35 +22,41 @@ void TornoCNC::procesarPieza() {
 
     if (husillo.estaDesgastado()) {
         reportarFalla();
-        std::cout << "¡Falla crítica! El husillo del Torno CNC ha llegado al límite de desgaste.\n";
+        std::cout << "¡Falla en el Torno CNC " << getNombre() << "! El husillo llegó al límite.\n";
         return;
     }
 
-    // Ejecuta la operación propia
+    // Ejecuta la operación de cilindrar
     cilindrar();
 
-    // Actualiza tiempos y contadores de la base y del componente
+    // Actualiza los contadores de la clase base y del componente
     agregarTiempo(30); // 30 segundos por pieza (puedes ajustarlo)
     registrarPieza();
     
     husillo.usar(1.0);
     desgasteHusillo = husillo.getDesgaste();
 
+    // Si con esta pieza se acabó el husillo, reporta la falla de inmediato
     if (husillo.estaDesgastado()) {
         reportarFalla();
     }
 }
 
 void TornoCNC::realizarMantenimiento() {
+    // Restaura el componente interno
     husillo.darMantenimiento();
     desgasteHusillo = husillo.getDesgaste();
-    registrarMantenimiento(); // Método protegido de Maquina que quita la falla y suma un paro
+
+    // Llama al método protegido de la base para quitar la falla de la máquina y sumar un paro
+    Maquina::registrarMantenimiento();
+    
+    std::cout << "Mantenimiento realizado en el Torno CNC " << getNombre() << ". Husillo restaurado.\n";
 }
 
 void TornoCNC::mostrarEstado() const {
-    Maquina::mostrarEstado();
-    std::cout << "  [Torno CNC] Velocidad Husillo: " << velocidadHusillo 
-              << " RPM | Desgaste: " << desgasteHusillo << "/" << husillo.getVidaUtil() << "\n";
+    Maquina::mostrarEstado(); // Muestra los datos de la base
+    std::cout << "  -> Velocidad Husillo: " << velocidadHusillo 
+              << " RPM | Desgaste Husillo: " << desgasteHusillo << "/" << husillo.getVidaUtil() << "\n";
 }
 
 double TornoCNC::getVelocidadHusillo() const {

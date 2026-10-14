@@ -1,6 +1,7 @@
 #ifndef TORNO_CNC_H
 #define TORNO_CNC_H
 
+#include <string>
 #include "Maquina.h"
 #include "Husillo.h"
 
@@ -11,15 +12,19 @@ private:
     Husillo husillo; // Composición
 
 public:
+    // Constructor que recibe id, nombre, la vida útil del husillo y la velocidad inicial
     TornoCNC(int id, const std::string& nombre, double vidaUtilHusillo, double velInicial);
 
-    // Métodos del diagrama
+    // Métodos propios
     void cilindrar();
     void ajustarVelocidad(double nuevaVelocidad);
-    void procesarPieza();
-    void realizarMantenimiento();
+    
+    // Métodos redefinidos de la clase base
+    void procesarPieza() override;
+    void realizarMantenimiento() override;
     void mostrarEstado() const override;
 
+    // Getters para consultar los atributos propios
     double getVelocidadHusillo() const;
     double getDesgasteHusillo() const;
 };
