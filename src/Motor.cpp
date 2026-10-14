@@ -7,3 +7,19 @@ Motor::Motor(int vidaInicial)
     if (vidaInicial <= 0)
         throw std::invalid_argument("vidaInicial debe ser > 0");
 }
+void Motor::usar() {
+    if (vidaUtil > 0) {
+        vidaUtil -= static_cast<int>(desgaste);
+        if (vidaUtil < 0) vidaUtil = 0;
+    }
+}
+
+bool Motor::estaDesgastado() const {
+    return vidaUtil <= 0;
+}
+
+void Motor::restaurar() {
+    // Ojo: necesitas guardar el valor inicial para restaurar.
+    // Si el diagrama no lo pide, puedes asumir un valor fijo.
+    vidaUtil = 50;   // ajusta según el equipo
+}
