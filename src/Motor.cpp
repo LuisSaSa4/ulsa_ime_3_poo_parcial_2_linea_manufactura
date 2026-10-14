@@ -21,5 +21,13 @@ bool Motor::estaDesgastado() const {
 void Motor::restaurar() {
     // Ojo: necesitas guardar el valor inicial para restaurar.
     // Si el diagrama no lo pide, puedes asumir un valor fijo.
-    vidaUtil = 50;   // ajusta según el equipo
+     vidaUtil = 50;   // ajustar???
 }
+
+int Motor::getVidaUtil() const { return vidaUtil; }
+double Motor::getDesgaste() const { return desgaste; }
+
+void Motor::mostrarEstado() const {
+    std::cout << "    Motor -> vida: " << vidaUtil << "\n";
+}
+    
