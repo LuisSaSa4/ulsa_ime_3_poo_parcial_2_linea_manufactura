@@ -1,9 +1,7 @@
-# Documentación de la clase: [Inserta aquí el nombre de tu clase]
+# Documentación de la clase: [Estacion_inspeccion]
 
-> Copia este archivo como `docs/<Clase>.md` (por ejemplo, con el nombre de tu máquina) y llena tu copia. No modifiques la plantilla.
-
-**Elaborada por:** [Inserta aquí tu nombre]
-**Matrícula:** [Inserta aquí tu matrícula]
+**Elaborada por:** [Diego Jiménez Mena]
+**Matrícula:** [25128]
 **Bloque:** [Inserta aquí tu número de bloque]
 
 ## 1. Propósito
