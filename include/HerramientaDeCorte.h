@@ -7,6 +7,7 @@ private:
     int vidaUtil;
     double desgaste;
 
+    
 public:
     // Prepara una herramienta con la vida util indicada.
     HerramientaDeCorte(int vidaInicial);
