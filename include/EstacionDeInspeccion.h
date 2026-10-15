@@ -5,11 +5,7 @@
 #include "SensorInspeccion.h"
 
 #include <string>
-<<<<<<< HEAD
-#include "Maquina.h"
-#include "SensorInspeccion.h"
-=======
->>>>>>> 3613b4f81592a6c98bcfda0dcfb094dcae1d3935
+
 
 // Estacion que revisa las piezas antes de finalizar la produccion.
 class EstacionDeInspeccion : public Maquina {
