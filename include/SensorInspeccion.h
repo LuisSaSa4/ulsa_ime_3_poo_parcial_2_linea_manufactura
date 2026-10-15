@@ -1,33 +1,28 @@
-#ifndef SENSOR_H
-#define SENSOR_H
+#ifndef SENSORINSPECCION_H
+#define SENSORINSPECCION_H
 
-// Componente de la EstacionInspeccion (relacion de COMPOSICION).
-// Modelo de desgaste: el sensor tiene una "calibracion" medida en piezas.
-// Cada medicion consume 1 unidad. Al llegar a 0 el sensor esta descalibrado
-// (agotado) y necesita recalibrarse.
-class Sensor {
+// Componente que revisa las piezas de la linea de produccion.
+class SensorInspeccion {
 private:
-    int calibracionMaxima;   // mediciones que aguanta entre calibraciones (> 0)
-    int calibracionActual;   // mediciones que le quedan
-    int recalibraciones;     // veces que se ha recalibrado
+    int vidaUtil;
+    double desgaste;
 
 public:
-    // Si calibracionMaxima <= 0 se usa un valor por omision (30) y se avisa.
-    explicit Sensor(int calibracionMaxima);
+    // Configura la vida util inicial del sensor.
+    SensorInspeccion(int vidaInicial);
 
-    // Consume una unidad de calibracion. Devuelve false si ya estaba agotado.
-    bool medir();
+    // Registra el uso durante una inspeccion.
+    void registrarUso();
 
-    // Restaura la calibracion al maximo y cuenta la recalibracion.
-    void recalibrar();
+    // Comprueba si el sensor alcanzo su limite.
+    bool estaDesgastado() const;
 
-    bool estaAgotado() const;
-    int getCalibracionActual() const;
-    int getCalibracionMaxima() const;
-    int getRecalibraciones() const;
-    double getPorcentajeCalibracion() const;
+    // Reinicia el desgaste despues del mantenimiento.
+    void restaurar();
 
-    void mostrarEstado() const;
+    // Permiten consultar los datos del componente.
+    int getVidaUtil() const;
+    double getDesgaste() const;
 };
 
 #endif

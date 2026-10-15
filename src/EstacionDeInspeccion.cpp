@@ -1,62 +1,103 @@
 #include "EstacionDeInspeccion.h"
+<<<<<<< HEAD
 #include <iostream>
+=======
+>>>>>>> 3613b4f81592a6c98bcfda0dcfb094dcae1d3935
 
-EstacionInspeccion::EstacionInspeccion(int id, const std::string& nombre,
-                                       int segundosPorPieza, double toleranciaMm,
-                                       int calibracionSensor)
+#include <iostream>
+#include <stdexcept>
+
+// Prepara la estacion con los valores indicados.
+EstacionDeInspeccion::EstacionDeInspeccion(
+    int id,
+    const std::string& nombre,
+    int tiempoPorPieza,
+    int vidaUtilSensor
+)
     : Maquina(id, nombre),
-      segundosPorPieza(10),
-      toleranciaMm(0.05),
-      sensor(calibracionSensor) {
-    if (segundosPorPieza > 0) {
-        this->segundosPorPieza = segundosPorPieza;
-    } else {
-        std::cout << getNombre() << ": segundos por pieza invalidos, se usa 10.\n";
-    }
-    if (toleranciaMm > 0.0) {
-        this->toleranciaMm = toleranciaMm;
-    } else {
-        std::cout << getNombre() << ": tolerancia invalida, se usa 0.05 mm.\n";
+      tiempoPorPieza(tiempoPorPieza),
+      sensor(vidaUtilSensor) {
+
+    // No se admiten tiempos de inspeccion iguales o inferiores a cero.
+    if (tiempoPorPieza <= 0) {
+        throw std::invalid_argument(
+            "El tiempo por pieza debe ser mayor que cero."
+        );
     }
 }
 
-bool EstacionInspeccion::procesarPieza() {
+// Revisa una pieza y registra el trabajo realizado.
+bool EstacionDeInspeccion::inspeccionar() {
+
+    // La inspeccion solo se realiza si la maquina esta disponible.
     if (!puedeProcesar()) {
-        std::cout << getNombre() << ": operacion rechazada ("
-                  << (estaEnFalla() ? "esta en falla" : "esta apagada") << ").\n";
+        std::cout << "La estacion " << getNombre()
+                  << " no puede inspeccionar en este momento.\n";
         return false;
     }
 
-    sensor.medir();                 // el sensor se desgasta
-    registrarPieza();               // avisa a la base
-    agregarTiempo(segundosPorPieza);
-    std::cout << getNombre() << ": pieza medida (tolerancia +/- "
-              << toleranciaMm << " mm).\n";
-
-    if (sensor.estaAgotado()) {     // falla en la pieza que agota el sensor
+    // Si el sensor ya se desgasto, primero debe atenderse la falla.
+    if (sensor.estaDesgastado()) {
         reportarFalla();
-        std::cout << getNombre() << ": FALLA, sensor descalibrado.\n";
+        return false;
     }
+
+    std::cout << "Estacion " << getNombre()
+              << " inspeccionando una pieza...\n";
+
+    // Actualiza los contadores heredados de Maquina.
+    registrarPieza();
+    agregarTiempo(tiempoPorPieza);
+
+    // La inspeccion tambien cuenta como uso del sensor.
+    sensor.registrarUso();
+
+    std::cout << "Inspeccion completada correctamente.\n";
+
+    // Al llegar al limite, se detiene la estacion para mantenimiento.
+    if (sensor.estaDesgastado()) {
+        reportarFalla();
+    }
+
+    // La pieza ya fue inspeccionada, aunque el sensor necesite atencion.
     return true;
 }
 
-void EstacionInspeccion::realizarMantenimiento() {
-    if (!estaEnFalla()) {
-        std::cout << getNombre() << ": no requiere mantenimiento.\n";
-        return;
-    }
-    sensor.recalibrar();
-    registrarMantenimiento();       // quita la falla y suma un paro
-    std::cout << getNombre() << ": sensor recalibrado, mantenimiento registrado.\n";
+// Metodo que utiliza Planta para solicitar una inspeccion.
+bool EstacionDeInspeccion::procesarOperacion() {
+    return inspeccionar();
 }
 
-int EstacionInspeccion::getSegundosPorPieza() const { return segundosPorPieza; }
-double EstacionInspeccion::getToleranciaMm() const { return toleranciaMm; }
-const Sensor& EstacionInspeccion::getSensor() const { return sensor; }
+// Complementa el reporte general con informacion del sensor.
+void EstacionDeInspeccion::mostrarEstado() const {
+    Maquina::mostrarEstado();
 
-void EstacionInspeccion::mostrarEstado() const {
-    Maquina::mostrarEstado();       // reutiliza la version base
-    std::cout << "  Segundos por pieza: " << segundosPorPieza
-              << " | Tolerancia: " << toleranciaMm << " mm\n";
-    sensor.mostrarEstado();
+    std::cout << "--- Datos de la Estacion de Inspeccion ---\n";
+    std::cout << "Tiempo por pieza: "
+              << tiempoPorPieza << " segundos\n";
+    std::cout << "Vida util del sensor: "
+              << sensor.getVidaUtil() << '\n';
+    std::cout << "Desgaste del sensor: "
+              << sensor.getDesgaste() << '\n';
+}
+
+// Restablece el sensor y registra el paro correspondiente.
+void EstacionDeInspeccion::realizarMantenimiento() {
+
+    if (!estaEnFalla()) {
+        std::cout << "La estacion " << getNombre()
+                  << " no requiere mantenimiento.\n";
+        return;
+    }
+
+    std::cout << "Realizando mantenimiento en la estacion "
+              << getNombre() << "...\n";
+
+    // El sensor vuelve a tener toda su vida util disponible.
+    sensor.restaurar();
+
+    Maquina::realizarMantenimiento();
+
+    std::cout << "Sensor restaurado. Desgaste actual: "
+              << sensor.getDesgaste() << '\n';
 }
