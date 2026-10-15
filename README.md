@@ -86,4 +86,4 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 
 Si el equipo modificó la interfaz de la clase base, expliquen qué cambió y por qué. Si no hubo cambios, escriban "Sin cambios".
 
-Sin cambios.
+Se agregó el método virtual puro `procesarOperacion()` para que `Planta` pueda solicitar el procesamiento de manera polimórfica. Cada máquina concreta implementa esa operación usando su método propio.

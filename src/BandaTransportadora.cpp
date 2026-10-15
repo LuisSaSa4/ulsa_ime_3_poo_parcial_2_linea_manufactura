@@ -34,6 +34,13 @@ void BandaTransportadora::procesarPieza() {
                   << "] FALLA: motor agotado.\n";
     }
 }
+
+bool BandaTransportadora::procesarOperacion() {
+    const int piezasAntes = getPiezasProcesadas();
+    procesarPieza();
+    return getPiezasProcesadas() > piezasAntes;
+}
+
 void BandaTransportadora::realizarMantenimiento() {
     motor.restaurar();
     Maquina::realizarMantenimiento();   // quita falla + suma paro + imprime
@@ -58,5 +65,4 @@ int BandaTransportadora::getTiempoPorPieza() const {
 int BandaTransportadora::getVidaMotor() const {
     return motor.getVidaUtil();
 }
-
 

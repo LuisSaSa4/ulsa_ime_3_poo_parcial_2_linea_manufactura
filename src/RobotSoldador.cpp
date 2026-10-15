@@ -55,6 +55,10 @@ bool RobotSoldador::soldar() {
     return true;
 }
 
+bool RobotSoldador::procesarOperacion() {
+    return soldar();
+}
+
 // Mostrar el estado general del robot y de su antorcha.
 void RobotSoldador::mostrarEstado() const {
     // Mostrar primero la información general de la máquina.

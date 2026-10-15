@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-#include "Sensorinspeccion.h"
-#include <iostream>
-=======
 #include "SensorInspeccion.h"
->>>>>>> 3613b4f81592a6c98bcfda0dcfb094dcae1d3935
 
 #include <stdexcept>
 
