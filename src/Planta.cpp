@@ -1,7 +1,7 @@
 
 #include "Planta.h"
-#include <iostream>
 
+#include <iostream>
 
 // Inicializa el contador de produccion.
 Planta::Planta()
@@ -33,5 +33,12 @@ void Planta::agregarMaquina(Maquina* maquina) {
 void Planta::encenderMaquinas() {
     for (Maquina* maquina : maquinas) {
         maquina->encender();
+    }
+}
+
+// Detiene todos los equipos de la linea.
+void Planta::apagarMaquinas() {
+    for (Maquina* maquina : maquinas) {
+        maquina->apagar();
     }
 }
