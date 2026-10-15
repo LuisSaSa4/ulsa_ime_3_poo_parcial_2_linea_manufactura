@@ -21,6 +21,7 @@ bool Motor::estaDesgastado() const {
 void Motor::restaurar() {
     // Ojo: necesitas guardar el valor inicial para restaurar.
     // Si el diagrama no lo pide, puedes asumir un valor fijo.
+    
      vidaUtil = 50;   // ajustar???
 }
 
