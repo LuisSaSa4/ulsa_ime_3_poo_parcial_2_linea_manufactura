@@ -29,12 +29,13 @@ Hace que la inspección sí cumpla su trabajo donde aprueba o rechaza cada pieza
 
 **Comportamiento nuevo en clases existentes:**
 
-Clase	Qué cambia
-Maquina	procesar ahora recibe la pieza: procesar(Pieza&). Como esto toca Maquina.h, se documenta en el README con acuerdo del equipo.
-Máquinas derivadas	Al procesar una pieza, le suman desviación según el desgaste de su componente: entre más piezas lleva desde su último mantenimiento, más error le agrega. Cuando recibe mantenimiento, ese conteo vuelve a cero.
-EstacionInspeccion	Redefine procesar(Pieza&): usa la versión de la base, compara la desviación total de la pieza con su tolerancia y la aprueba o la rechaza. Cuenta las piezas aprobadas y rechazadas.
-Planta	Crea cada pieza, la pasa por las estaciones y descarta las rechazadas. Lleva la cuenta de aprobadas y rechazadas.
-Reporte del turno	Agrega piezas aprobadas, rechazadas y porcentaje de rechazo.
+| Clase | Qué cambia |
+|---|---|
+| Maquina | procesar ahora recibe la pieza: procesar(Pieza&). Como esto toca Maquina.h, se documenta en el README con acuerdo del equipo. |
+| Máquinas derivadas | Al procesar una pieza, le suman desviación según el desgaste de su componente: entre más piezas lleva desde su último mantenimiento, más error le agrega. Cuando recibe mantenimiento, ese conteo vuelve a cero. |
+| EstacionInspeccion | Redefine procesar(Pieza&): usa la versión de la base, compara la desviación total de la pieza con su tolerancia y la aprueba o la rechaza. Cuenta las piezas aprobadas y rechazadas. |
+| Planta | Crea cada pieza, la pasa por las estaciones y descarta las rechazadas. Lleva la cuenta de aprobadas y rechazadas. |
+| Reporte del turno | Agrega piezas aprobadas, rechazadas y porcentaje de rechazo. |
 
 **Interacciones nuevas entre objetos:**
 
