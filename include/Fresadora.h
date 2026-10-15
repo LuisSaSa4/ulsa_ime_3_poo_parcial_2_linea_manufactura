@@ -1,35 +1,36 @@
-// Fresadora.h
-// Maquina derivada de Maquina. Su operacion es ranurar la pieza.
- 
+
 #ifndef FRESADORA_H
 #define FRESADORA_H
- 
-#include <string>
+
 #include "Maquina.h"
-#include "Herramienta_Corte.h"
- 
+#include "HerramientaDeCorte.h"
+
+#include <string>
+
+// Representa una fresadora dentro de la linea de manufactura.
 class Fresadora : public Maquina {
 private:
-    int tiempoPorPieza_;        // Segundos que tarda por pieza (mayor a 0)
-    double profundidadRanura_;  // En mm, entre 0.5 y 20
-    int velocidadRpm_;          // Entre 500 y 12000
-    Herramienta_Corte herramienta_;  // Composicion: la fresadora TIENE una herramienta
- 
+    int tiempoPorPieza;
+
+    // La herramienta forma parte de la fresadora.
+    HerramientaDeCorte herramienta;
+
 public:
-    // Constructor. Los ultimos 4 datos tienen valor por defecto,
-    // asi que se puede crear solo con id y nombre.
+    // Configura la maquina y su herramienta de corte.
     Fresadora(int id, const std::string& nombre,
-              int tiempoPorPieza = 45, int vidaHerramienta = 25,
-              double profundidadMm = 5.0, int rpm = 3000);
- 
-    // Metodos propios (la clase Maquina no los tiene)
-    void ranurar();
-    int piezasRestantesHerramienta() const;
-    bool herramientaDesgastada() const;
-    void realizarMantenimiento();
- 
-    // Metodo redefinido de Maquina (misma firma que en la base)
-    void mostrarEstado() const;
+              int tiempoPorPieza, int vidaUtilHerramienta);
+
+    // Ejecuta el fresado de una pieza.
+    bool fresar();
+
+    // Operacion que la planta invoca de manera polimorfica.
+    bool procesarOperacion() override;
+
+    // Presenta las estadisticas y el estado de la herramienta.
+    void mostrarEstado() const override;
+
+    // Atiende la falla y recupera la herramienta.
+    void realizarMantenimiento() override;
 };
- 
+
 #endif
