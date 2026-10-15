@@ -6,6 +6,7 @@
 
 #include <string>
 
+
 // Estacion que revisa las piezas antes de finalizar la produccion.
 class EstacionDeInspeccion : public Maquina {
 private:

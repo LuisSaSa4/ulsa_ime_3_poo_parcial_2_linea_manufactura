@@ -1,41 +1,46 @@
-#include "Sensor.h"
+<<<<<<< HEAD
+#include "Sensorinspeccion.h"
 #include <iostream>
+=======
+#include "SensorInspeccion.h"
+>>>>>>> 3613b4f81592a6c98bcfda0dcfb094dcae1d3935
 
-Sensor::Sensor(int calibracionMaxima)
-    : calibracionMaxima(30), calibracionActual(30), recalibraciones(0) {
-    if (calibracionMaxima > 0) {
-        this->calibracionMaxima = calibracionMaxima;
-        calibracionActual = calibracionMaxima;
-    } else {
-        std::cout << "Sensor: calibracion invalida (" << calibracionMaxima
-                  << "), se usa 30.\n";
+#include <stdexcept>
+
+// Inicializa el sensor sin desgaste acumulado.
+SensorInspeccion::SensorInspeccion(int vidaInicial)
+    : vidaUtil(vidaInicial), desgaste(0.0) {
+
+    if (vidaInicial <= 0) {
+        throw std::invalid_argument(
+            "La vida util del sensor debe ser mayor que cero."
+        );
     }
 }
 
-bool Sensor::medir() {
-    if (estaAgotado()) {
-        return false;
+// Registra una inspeccion realizada.
+void SensorInspeccion::registrarUso() {
+    if (!estaDesgastado()) {
+        desgaste += 1.0;
     }
-    calibracionActual--;
-    return true;
 }
 
-void Sensor::recalibrar() {
-    calibracionActual = calibracionMaxima;
-    recalibraciones++;
+// Comprueba si el sensor llego a su limite.
+bool SensorInspeccion::estaDesgastado() const {
+    return desgaste >= vidaUtil;
 }
 
-bool Sensor::estaAgotado() const { return calibracionActual <= 0; }
-int Sensor::getCalibracionActual() const { return calibracionActual; }
-int Sensor::getCalibracionMaxima() const { return calibracionMaxima; }
-int Sensor::getRecalibraciones() const { return recalibraciones; }
-
-double Sensor::getPorcentajeCalibracion() const {
-    return 100.0 * calibracionActual / calibracionMaxima;
+// Restablece el desgaste despues del mantenimiento.
+void SensorInspeccion::restaurar() {
+    desgaste = 0.0;
 }
 
-void Sensor::mostrarEstado() const {
-    std::cout << "  Sensor: calibracion " << calibracionActual << "/" << calibracionMaxima
-              << " (" << getPorcentajeCalibracion() << "%), recalibraciones: "
-              << recalibraciones << (estaAgotado() ? " [DESCALIBRADO]" : "") << "\n";
+// Consulta la vida util configurada.
+int SensorInspeccion::getVidaUtil() const {
+    return vidaUtil;
+}
+
+// Consulta el desgaste acumulado.
+double SensorInspeccion::getDesgaste() const {
+    return desgaste;
 }
