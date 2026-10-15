@@ -1,38 +1,43 @@
-// Herramienta_Corte.cpp
- 
-#include "Herramienta_Corte.h"
- 
-Herramienta_Corte::Herramienta_Corte(int vidaInicial)
-    : desgaste_(0.0) {
-    // Validacion: la vida util no puede ser 0 ni negativa
-    if (vidaInicial > 0) {
-        vidaUtil_ = vidaInicial;
-    } else {
-        vidaUtil_ = 1;
+
+#include "HerramientaDeCorte.h"
+#include <stdexcept>
+
+
+// Al crear la herramienta, su desgaste comienza en cero.
+HerramientaDeCorte::HerramientaDeCorte(int vidaInicial)
+    : vidaUtil(vidaInicial), desgaste(0.0) {
+
+    // Evita configurar una herramienta sin vida util valida.
+    if (vidaInicial <= 0) {
+        throw std::invalid_argument(
+            "La vida util de la herramienta debe ser mayor que cero."
+        );
     }
 }
- 
-bool Herramienta_Corte::estaDesgastada() const {
-    // Esta desgastada cuando el desgaste alcanza la vida util
-    if (desgaste_ >= vidaUtil_) {
-        return true;
+
+// Cada uso representa el trabajo realizado sobre una pieza.
+void HerramientaDeCorte::registrarUso() {
+    if (!estaDesgastado()) {
+        desgaste += 1.0;
     }
-    return false;
 }
- 
-void Herramienta_Corte::usar() {
-    desgaste_ = desgaste_ + 1.0;
+
+// La herramienta necesita mantenimiento al alcanzar su limite.
+bool HerramientaDeCorte::estaDesgastado() const {
+    return desgaste >= vidaUtil;
 }
- 
-void Herramienta_Corte::restaurar() {
-    desgaste_ = 0.0;
+
+// Reinicia el desgaste despues del mantenimiento.
+void HerramientaDeCorte::restaurar() {
+    desgaste = 0.0;
 }
- 
-int Herramienta_Corte::getVidaUtil() const {
-    return vidaUtil_;
+
+// Informa la duracion configurada para la herramienta.
+int HerramientaDeCorte::getVidaUtil() const {
+    return vidaUtil;
 }
- 
-double Herramienta_Corte::getDesgaste() const {
-    return desgaste_;
+
+// Permite consultar cuanto se ha utilizado.
+double HerramientaDeCorte::getDesgaste() const {
+    return desgaste;
 }
- 
