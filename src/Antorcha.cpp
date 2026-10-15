@@ -1,44 +1,43 @@
+
 #include "Antorcha.h"
 
-#include <stdexcept>//Biblioteca estandar de c++ que tiene herramientas para manejar errores y lanzar excepsiones
+#include <stdexcept>
 
-// Constructor que inicializa la vida útil y el desgaste de la antorcha.
+// Inicializa la vida util y el desgaste de la antorcha.
 Antorcha::Antorcha(int vidaInicial)
-    : vidaUtil(vidaInicial),
-      desgaste(0) { 
+    : vidaUtil(vidaInicial), desgaste(0.0) {
 
-    // Validar que la vida útil sea mayor que cero.
-    if (vidaInicial <= 0) { 
-        throw std::invalid_argument( //Rechaza una vida util iual o menor a cero
-            "La vida util de la antorcha debe ser mayor que cero."
+    // La vida util debe ser mayor que cero.
+    if (vidaInicial <= 0) {
+        throw std::invalid_argument(
+            "La vida util de la antorcha debe ser positiva."
         );
     }
 }
 
-// Registrar el uso de la antorcha.
+// Cada pieza soldada aumenta el desgaste en una unidad.
 void Antorcha::registrarUso() {
-    // Aumentar el desgaste solo si no se ha alcanzado el límite.
     if (!estaDesgastado()) {
-        ++desgaste;
+        desgaste += 1.0;
     }
 }
 
-// Verificar si la antorcha alcanzó su límite de desgaste.
+// Devuelve true cuando se alcanza el limite de uso.
 bool Antorcha::estaDesgastado() const {
     return desgaste >= vidaUtil;
 }
 
-// Restaurar la antorcha después del mantenimiento.
+// El mantenimiento devuelve el desgaste a cero.
 void Antorcha::restaurar() {
-    desgaste = 0;
+    desgaste = 0.0;
 }
 
-// Obtener la vida útil máxima de la antorcha.
+// Devuelve la vida util configurada.
 int Antorcha::getVidaUtil() const {
     return vidaUtil;
 }
 
-// Obtener el desgaste acumulado.
-int Antorcha::getDesgaste() const {
+// Devuelve el desgaste actual.
+double Antorcha::getDesgaste() const {
     return desgaste;
 }
