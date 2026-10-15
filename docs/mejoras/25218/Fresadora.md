@@ -2,8 +2,9 @@
 
 > Copia este archivo como `docs/<Clase>.md` 
 
-**Elaborada por:** [Inserta aquí tu nombre]
-**Matrícula:** [Inserta aquí tu matrícula]
+**Elaborada por:** Néstor Hiram López Valdovinos
+<br>
+**Matrícula:** 25218
 **Bloque:** [Inserta aquí tu número de bloque]
 
 ## 1. Propósito
