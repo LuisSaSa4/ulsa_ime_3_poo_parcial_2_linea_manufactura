@@ -1,4 +1,4 @@
-#include "Estacion_inspeccion.h"
+#include "EstacionDeInspeccion.h"
 #include <iostream>
 
 EstacionInspeccion::EstacionInspeccion(int id, const std::string& nombre,

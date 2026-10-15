@@ -1,4 +1,4 @@
-#include "Sensor.h"
+#include "Sensorinspeccion.h"
 #include <iostream>
 
 Sensor::Sensor(int calibracionMaxima)

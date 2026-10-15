@@ -3,7 +3,7 @@
 
 #include <string>
 #include "Maquina.h"
-#include "Sensor.h"
+#include "SensorInspeccion.h"
 
 // Estacion de inspeccion: mide la pieza con un Sensor.
 //   - Herencia:    EstacionInspeccion es una Maquina.
