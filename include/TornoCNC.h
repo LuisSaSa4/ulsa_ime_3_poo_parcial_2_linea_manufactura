@@ -20,7 +20,8 @@ public:
     void ajustarVelocidad(double nuevaVelocidad);
     
     // Métodos redefinidos de la clase base
-    void procesarPieza() override;
+    void procesarPieza();
+    bool procesarOperacion() override;
     void realizarMantenimiento() override;
     void mostrarEstado() const override;
 

@@ -61,6 +61,9 @@ public:
     int getTiempoTrabajado() const;
     int getParos() const;
 
+    // Ejecuta la operacion propia de cada maquina.
+    virtual bool procesarOperacion() = 0;
+
     // Muestra los datos generales de la máquina.
     // Es virtual para permitir que las clases derivadas
     // muestren también la información de sus propios atributos.

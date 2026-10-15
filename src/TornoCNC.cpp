@@ -42,6 +42,12 @@ void TornoCNC::procesarPieza() {
     }
 }
 
+bool TornoCNC::procesarOperacion() {
+    const int piezasAntes = getPiezasProcesadas();
+    procesarPieza();
+    return getPiezasProcesadas() > piezasAntes;
+}
+
 void TornoCNC::realizarMantenimiento() {
     // Restaura el componente interno
     husillo.darMantenimiento();
