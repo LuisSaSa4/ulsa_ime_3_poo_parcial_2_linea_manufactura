@@ -1,40 +1,35 @@
-#ifndef ESTACION_INSPECCION_H
-#define ESTACION_INSPECCION_H
+#ifndef ESTACIONDEINSPECCION_H
+#define ESTACIONDEINSPECCION_H
+
+#include "Maquina.h"
+#include "SensorInspeccion.h"
 
 #include <string>
-#include "Maquina.h"
-#include "Sensor.h"
 
-// Estacion de inspeccion: mide la pieza con un Sensor.
-//   - Herencia:    EstacionInspeccion es una Maquina.
-//   - Composicion: EstacionInspeccion contiene (y es duena de) un Sensor.
-//
-// Regla de falla: la estacion falla en la MISMA pieza que agota la
-// calibracion del sensor (la pieza se termina y despues queda en falla).
-// El mantenimiento recalibra el sensor, quita la falla y NO suma tiempo.
-class EstacionInspeccion : public Maquina {
+// Estacion que revisa las piezas antes de finalizar la produccion.
+class EstacionDeInspeccion : public Maquina {
 private:
-    int segundosPorPieza;    // tiempo por pieza (> 0)
-    double toleranciaMm;     // tolerancia de medicion en mm (> 0)
-    Sensor sensor;           // componente (composicion)
+    int tiempoPorPieza;
+
+    // El sensor forma parte de la estacion de inspeccion.
+    SensorInspeccion sensor;
 
 public:
-    EstacionInspeccion(int id, const std::string& nombre,
-                       int segundosPorPieza, double toleranciaMm,
-                       int calibracionSensor);
+    // Configura el tiempo de revision y la vida util del sensor.
+    EstacionDeInspeccion(int id, const std::string& nombre,
+                         int tiempoPorPieza, int vidaUtilSensor);
 
-    // Metodos propios
-    // Inspecciona una pieza. Devuelve true si la proceso, false si la rechazo.
-    bool procesarPieza();
-    // Recalibra el sensor y registra el mantenimiento (solo si esta en falla).
-    void realizarMantenimiento();
+    // Ejecuta la inspeccion de una pieza.
+    bool inspeccionar();
 
-    int getSegundosPorPieza() const;
-    double getToleranciaMm() const;
-    const Sensor& getSensor() const;
+    // Permite que Planta solicite la operacion.
+    bool procesarOperacion() override;
 
-    // Redefine el de Maquina y reutiliza su version.
-    void mostrarEstado() const;
+    // Muestra los datos generales y los del sensor.
+    void mostrarEstado() const override;
+
+    // Recupera el sensor despues de una falla.
+    void realizarMantenimiento() override;
 };
 
 #endif
