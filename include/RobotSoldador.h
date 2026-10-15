@@ -24,6 +24,7 @@ public:
     // Realiza el proceso de soldadura.
     // Devuelve true si la pieza fue procesada correctamente.
     bool soldar();
+    bool procesarOperacion() override;
 
     // Muestra el estado general y la información de la antorcha.
     void mostrarEstado() const override;
