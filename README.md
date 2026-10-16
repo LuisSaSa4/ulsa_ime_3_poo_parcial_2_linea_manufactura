@@ -82,7 +82,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | Luis Samano Saavedra | [RobotSoldador](docs/mejoras/24090/RobotSoldador.md) | [Propuesta](docs/mejoras/24090/mejora.md) |
 | Diego Jiménez Mena | [Estacion_inspeccion](docs/mejoras/25128/Estacion_inspeccion.md) | [Propuesta](docs/mejoras/25128/Mejora.md) |
 | Diego Simental | | [Propuesta](docs/mejoras/25104/mejora.md) |
-| Renata Lucia Farias Esquivel | [BandaTransportadora](docs/mejoras/25111/BandaTransportadora.md) | |
+| Renata Lucia Farias Esquivel | [BandaTransportadora](docs/mejoras/25111/BandaTransportadora.md) | [Propuesta](docs/mejoras/25111/MejorasBandaTransportadora.md) |
 
 ## 8. Cambios a `Maquina.h`
 
