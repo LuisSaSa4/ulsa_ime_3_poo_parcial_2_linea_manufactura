@@ -9,18 +9,18 @@
 
 **¿Qué máquina representa tu clase y qué operación hace sobre la pieza?**
 
-[Mi clase representa una banda transportadora, la cual se encarga de desplazar las piezas a las diferentes estaciones y maquinas que existen en una línea de producción. Es la máquina que garantiza el flujo continuo de las piezas.]
+Mi clase representa una banda transportadora, la cual se encarga de desplazar las piezas a las diferentes estaciones y maquinas que existen en una línea de producción. Es la máquina que garantiza el flujo continuo de las piezas.
 
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
-[Su componente en el código es MotorBanda y, sin el no hay movimiento ni traslado de piezas. Por lo que es un miembro fundamental dentro de la clase, por eso la forma en la que se modelo este componente, ya que fuera de la banda este no tiene sentido. ]
+Su componente en el código es MotorBanda y, sin el no hay movimiento ni traslado de piezas. Por lo que es un miembro fundamental dentro de la clase, por eso la forma en la que se modelo este componente, ya que fuera de la banda este no tiene sentido. 
 
 ## 2. Decisiones de diseño
 
 **Atributos propios de tu clase y validación de cada uno:**
 
-[ATRIBUTO: tiempoPorPieza TIPO: int  VALIDACIÓN: Debe ser > 0. Se valida en el constructor lanzando std::invalid_argument si es <= 0. Representa los segundos que tarda la banda en trasladar una pieza
-ATRIBUTO: Motor TIPO: MotorBanda VALIDACIÓN: Se inicializa en el constructor con vidaUtilMotor]
+ATRIBUTO: tiempoPorPieza TIPO: int  VALIDACIÓN: Debe ser > 0. Se valida en el constructor lanzando std::invalid_argument si es <= 0. Representa los segundos que tarda la banda en trasladar una pieza
+ATRIBUTO: Motor TIPO: MotorBanda VALIDACIÓN: Se inicializa en el constructor con vidaUtilMotor
 
 **Métodos propios (los que la clase base no tiene):**
 bool transportar(): realiza el traslado de una pieza. Verifica que la banda pueda procesar (puedeProcesar()), que el motor no esté desgastado, registra la pieza (registrarPieza()), acumula el tiempo (agregarTiempo()) y registra el uso del motor (motor.registrarUso()). Devuelve true si el traslado se completó.
@@ -89,7 +89,6 @@ El reporte extendido en mostrarEstado() con datos del motor.]
 
 Diagrama de tu clase y su componente, hecho en draw.io. Debe mostrar la relación de herencia con `Maquina` y la de composición con tu componente. Guarda la imagen en `docs/` y enlázala aquí.
 
-[Inserta aquí tu diagrama]
 
 ## 4. Bitácora
 
