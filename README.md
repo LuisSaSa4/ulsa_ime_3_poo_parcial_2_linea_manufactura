@@ -6,12 +6,12 @@ Proyecto del Parcial 2 de Programación Orientada a Objetos.
 
 | Bloque | Matrícula | Nombre | Usuario de GitHub | Máquina | Componente |
 | --- | --- | --- | --- | --- | --- |
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
+| 1 |24090|Luis Samano Saavedra |LuisSaSa4 |Robot Soldador |Antorcha|
+| 2 ||Diego Emilio Simental Perez|@simentalinho | | |
+| 3 |25111 |Renata Lucia Farias Esquivel|renatafarias-lang |Banda Transportadora |Motor|
+| 4 | |Mary Ator Garang |marygarang-a11y | | |
 | 5 |25218 |Néstor Hiram López Valdovinos |nestor-lopez-07 |Fresadora |Herramienta de corte |
-| 6 | | | | | |
+| 6 |25128 |Diego Jimenez Mena |Mena18-IME |Estación de Inspección |Sensor |
 
 ## 2. Orden de la línea
 1. Torno CNC
@@ -83,7 +83,5 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | | | |
 
 ## 8. Cambios a `Maquina.h`
-
-Si el equipo modificó la interfaz de la clase base, expliquen qué cambió y por qué. Si no hubo cambios, escriban "Sin cambios".
 
 Se agregó el método virtual puro `procesarOperacion()` para que `Planta` pueda solicitar el procesamiento de manera polimórfica. Cada máquina concreta implementa esa operación usando su método propio.
