@@ -53,8 +53,6 @@ Las máquinas siguen heredando de `Maquina`, como ya lo hacen. El cambio es que 
 
 ## 3. Diagrama de clases
 
-El diagrama sigue el estilo del diagrama de referencia. Las etiquetas identifican las clases nuevas, las existentes que se modifican y las existentes que permanecen sin cambios.
-
 ![Diagrama de clases de la propuesta de rechazo de piezas](./Mejora_diagrama.svg)
 
-[Abrir el diagrama editable en draw.io](./Mejora_diagrama.drawio)
+
