@@ -61,6 +61,16 @@ bool Fresadora::fresar() {
     return true;
 }
 
+// Consulta la vida util restante de la herramienta en piezas.
+int Fresadora::piezasRestantesHerramienta() const {
+    if (herramienta.estaDesgastado()) {
+        return 0;
+    }
+
+    return herramienta.getVidaUtil()
+        - static_cast<int>(herramienta.getDesgaste());
+}
+
 // Permite que Planta solicite la operacion sin conocer los detalles.
 bool Fresadora::procesarOperacion() {
     return fresar();

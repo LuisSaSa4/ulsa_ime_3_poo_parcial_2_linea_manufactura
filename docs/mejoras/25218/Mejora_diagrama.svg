@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1650" viewBox="0 0 2600 1650">
+  <defs>
+    <marker id="inheritance" markerWidth="18" markerHeight="16" refX="17" refY="8" orient="auto">
+      <path d="M 0 0 L 18 8 L 0 16 Z" fill="#050505" stroke="#ffffff" stroke-width="1.5"/>
+    </marker>
+    <marker id="dependency" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 1 1 L 10 6 L 1 11" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+    </marker>
+    <style>
+      .heading { font: bold 28px Arial, sans-serif; fill: #ffffff; }
+      .legend { font: 16px Arial, sans-serif; fill: #e6e6e6; }
+      .name { font: bold 18px Arial, sans-serif; fill: #ffffff; }
+      .stereo { font: italic 14px Arial, sans-serif; fill: #ffffff; }
+      .text { font: 13px Arial, sans-serif; fill: #ffffff; }
+      .badge { font: bold 10px Arial, sans-serif; fill: #ffffff; }
+      .relation { font: 13px Arial, sans-serif; fill: #ffffff; }
+      .rule { stroke: #ffffff; stroke-opacity: .7; stroke-width: 1; }
+      .uml { stroke: #ffffff; stroke-width: 2.2; fill: none; }
+      .dash { stroke: #ffffff; stroke-width: 2; stroke-dasharray: 8 6; fill: none; }
+    </style>
+  </defs>
+  <rect width="2600" height="1650" fill="#050505"/>
+  <text x="55" y="42" class="heading">Diagrama de clases: inspección y rechazo de piezas</text>
+  <text x="55" y="70" class="legend">Etiquetas: NUEVA = clase agregada · EXISTENTE / MODIFICADA = clase que cambia · EXISTENTE = clase sin cambios</text>
+
+  <!-- Relaciones de la planta y la pieza -->
+  <path d="M 1260 325 V 405" class="uml"/>
+  <path d="M 1248 325 L 1260 342 L 1272 325 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="1284" y="350" class="relation">1</text>
+  <text x="1284" y="398" class="relation">0..*</text>
+
+  <path d="M 1590 190 H 1770" class="dash" marker-end="url(#dependency)"/>
+  <text x="1615" y="178" class="relation">crea / envía</text>
+
+  <path d="M 1620 580 H 1735 V 275 H 1770" class="dash" marker-end="url(#dependency)"/>
+  <text x="1635" y="565" class="relation">procesar(Pieza&amp;)</text>
+
+  <path d="M 2100 350 V 405" class="uml" marker-end="url(#dependency)"/>
+  <text x="2112" y="384" class="relation">estado</text>
+
+  <!-- Generalización -->
+  <path d="M 225 920 V 865" class="uml"/>
+  <path d="M 645 920 V 865" class="uml"/>
+  <path d="M 1065 920 V 865" class="uml"/>
+  <path d="M 1485 920 V 865" class="uml"/>
+  <path d="M 1905 920 V 865" class="uml"/>
+  <path d="M 2325 920 V 865" class="uml"/>
+  <path d="M 225 865 H 2325" class="uml"/>
+  <path d="M 1260 865 V 785" class="uml" marker-end="url(#inheritance)"/>
+
+  <!-- Composición de máquina con componentes -->
+  <path d="M 225 1190 V 1285" class="uml"/>
+  <path d="M 213 1190 L 225 1207 L 237 1190 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="240" y="1215" class="relation">1</text>
+  <path d="M 645 1190 V 1285" class="uml"/>
+  <path d="M 633 1190 L 645 1207 L 657 1190 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="660" y="1215" class="relation">1</text>
+  <path d="M 1065 1190 V 1285" class="uml"/>
+  <path d="M 1053 1190 L 1065 1207 L 1077 1190 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="1080" y="1215" class="relation">1</text>
+  <path d="M 1485 1190 V 1285" class="uml"/>
+  <path d="M 1473 1190 L 1485 1207 L 1497 1190 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="1500" y="1215" class="relation">1</text>
+  <path d="M 1905 1190 V 1285" class="uml"/>
+  <path d="M 1893 1190 L 1905 1207 L 1917 1190 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="1920" y="1215" class="relation">1</text>
+  <path d="M 2325 1190 V 1285" class="uml"/>
+  <path d="M 2313 1190 L 2325 1207 L 2337 1190 Z" fill="#050505" stroke="#ffffff" stroke-width="2"/>
+  <text x="2340" y="1215" class="relation">1</text>
+
+  <!-- Planta -->
+  <g>
+    <rect x="930" y="90" width="660" height="235" fill="#28108c" stroke="#633cff" stroke-width="3"/>
+    <rect x="930" y="90" width="660" height="24" fill="#4217db"/>
+    <text x="943" y="107" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="1260" y="139" text-anchor="middle" class="name">Planta</text>
+    <line x1="930" y1="149" x2="1590" y2="149" class="rule"/>
+    <text x="947" y="171" class="text">- vector&lt;Maquina*&gt; maquinas</text>
+    <text x="947" y="190" class="text">- int piezasTerminadas · piezasAprobadas · piezasRechazadas</text>
+    <line x1="930" y1="199" x2="1590" y2="199" class="rule"/>
+    <text x="947" y="220" class="text">+ agregarMaquina(Maquina*) · encenderMaquinas() · apagarMaquinas()</text>
+    <text x="947" y="239" class="text">+ procesarPieza() · procesarLote(int)</text>
+    <text x="947" y="258" class="text">+ mostrarReporte() const</text>
+    <text x="947" y="291" class="text">Crea las piezas, cuenta aprobadas y rechazadas.</text>
+    <text x="947" y="310" class="text">Las máquinas siguen siendo externas a su ciclo de vida.</text>
+  </g>
+
+  <!-- Pieza -->
+  <g>
+    <rect x="1770" y="90" width="660" height="260" fill="#07522c" stroke="#21c86a" stroke-width="3"/>
+    <rect x="1770" y="90" width="660" height="24" fill="#07803e"/>
+    <text x="1783" y="107" class="badge">NUEVA</text>
+    <text x="2100" y="139" text-anchor="middle" class="name">Pieza</text>
+    <line x1="1770" y1="149" x2="2430" y2="149" class="rule"/>
+    <text x="1787" y="174" class="text">- int id</text>
+    <text x="1787" y="194" class="text">- double desviacionAcumulada</text>
+    <text x="1787" y="214" class="text">- double tolerancia</text>
+    <text x="1787" y="234" class="text">- EstadoPieza estado</text>
+    <line x1="1770" y1="244" x2="2430" y2="244" class="rule"/>
+    <text x="1787" y="268" class="text">+ agregarDesviacion(valor)</text>
+    <text x="1787" y="288" class="text">+ aprobar() · rechazar()</text>
+    <text x="1787" y="325" class="text">Conserva la desviación y el resultado de inspección.</text>
+  </g>
+
+  <!-- Estado de la pieza -->
+  <g>
+    <rect x="1950" y="405" width="300" height="150" fill="#07522c" stroke="#21c86a" stroke-width="3"/>
+    <rect x="1950" y="405" width="300" height="22" fill="#07803e"/>
+    <text x="1962" y="421" class="badge">NUEVA</text>
+    <text x="2100" y="449" text-anchor="middle" class="stereo">&lt;&lt;enumeration&gt;&gt;</text>
+    <text x="2100" y="472" text-anchor="middle" class="name">EstadoPieza</text>
+    <line x1="1950" y1="480" x2="2250" y2="480" class="rule"/>
+    <text x="1967" y="504" class="text">EN_PROCESO</text>
+    <text x="1967" y="526" class="text">APROBADA · RECHAZADA</text>
+  </g>
+
+  <!-- Clase base -->
+  <g>
+    <rect x="940" y="405" width="640" height="380" fill="#75051a" stroke="#f02848" stroke-width="3"/>
+    <rect x="940" y="405" width="640" height="24" fill="#aa0c2a"/>
+    <text x="953" y="422" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="1260" y="453" text-anchor="middle" class="stereo">&lt;&lt;abstracta&gt;&gt;</text>
+    <text x="1260" y="477" text-anchor="middle" class="name">Maquina</text>
+    <line x1="940" y1="487" x2="1580" y2="487" class="rule"/>
+    <text x="957" y="510" class="text">- int id · string nombre</text>
+    <text x="957" y="529" class="text">- bool encendida · bool enFalla</text>
+    <text x="957" y="548" class="text">- int piezasProcesadas · tiempoTrabajado · paros</text>
+    <line x1="940" y1="558" x2="1580" y2="558" class="rule"/>
+    <text x="957" y="581" class="text">+ Maquina(id, nombre) · virtual ~Maquina()</text>
+    <text x="957" y="600" class="text">+ encender() · apagar() · puedeProcesar() const</text>
+    <text x="957" y="619" class="text">+ estaEncendida() const · estaEnFalla() const</text>
+    <text x="957" y="638" class="text">+ getId() const · getNombre() const</text>
+    <text x="957" y="657" class="text">+ getPiezasProcesadas() const · getTiempoTrabajado() const</text>
+    <text x="957" y="676" class="text">+ getParos() const · mostrarEstado() const</text>
+    <text x="957" y="695" class="text">+ procesar(pieza: Pieza&amp;) = 0</text>
+    <text x="957" y="714" class="text">+ realizarMantenimiento()</text>
+    <text x="957" y="755" class="text">La operación polimórfica ahora recibe la pieza para actualizarla.</text>
+  </g>
+
+  <!-- Máquinas derivadas -->
+  <g>
+    <rect x="35" y="920" width="380" height="270" fill="#0069ad" stroke="#16b9ff" stroke-width="3"/>
+    <rect x="35" y="920" width="380" height="22" fill="#087ed1"/>
+    <text x="47" y="936" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="225" y="965" text-anchor="middle" class="name">BandaTransportadora</text>
+    <line x1="35" y1="975" x2="415" y2="975" class="rule"/>
+    <text x="52" y="997" class="text">- int tiempoPorPieza</text>
+    <text x="52" y="1016" class="text">- MotorBanda motor</text>
+    <line x1="35" y1="1025" x2="415" y2="1025" class="rule"/>
+    <text x="52" y="1047" class="text">+ BandaTransportadora(...)</text>
+    <text x="52" y="1066" class="text">+ transportar(): bool</text>
+    <text x="52" y="1085" class="text">+ procesar(Pieza&amp;) override</text>
+    <text x="52" y="1104" class="text">+ mostrarEstado() const override</text>
+    <text x="52" y="1123" class="text">+ realizarMantenimiento() override</text>
+    <text x="52" y="1160" class="text">Agrega desviación según desgaste del motor.</text>
+  </g>
+  <g>
+    <rect x="455" y="920" width="380" height="270" fill="#a04b00" stroke="#ff9a1f" stroke-width="3"/>
+    <rect x="455" y="920" width="380" height="22" fill="#d86b00"/>
+    <text x="467" y="936" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="645" y="965" text-anchor="middle" class="name">CortadoraLaser</text>
+    <line x1="455" y1="975" x2="835" y2="975" class="rule"/>
+    <text x="472" y="997" class="text">- int tiempoPorPieza</text>
+    <text x="472" y="1016" class="text">- TuboLaser tubo</text>
+    <line x1="455" y1="1025" x2="835" y2="1025" class="rule"/>
+    <text x="472" y="1047" class="text">+ CortadoraLaser(...)</text>
+    <text x="472" y="1066" class="text">+ cortar(): bool</text>
+    <text x="472" y="1085" class="text">+ procesar(Pieza&amp;) override</text>
+    <text x="472" y="1104" class="text">+ mostrarEstado() const override</text>
+    <text x="472" y="1123" class="text">+ realizarMantenimiento() override</text>
+    <text x="472" y="1160" class="text">Agrega desviación según desgaste del tubo.</text>
+  </g>
+  <g>
+    <rect x="875" y="920" width="380" height="270" fill="#086b30" stroke="#35d45a" stroke-width="3"/>
+    <rect x="875" y="920" width="380" height="22" fill="#118f3b"/>
+    <text x="887" y="936" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="1065" y="965" text-anchor="middle" class="name">TornoCNC</text>
+    <line x1="875" y1="975" x2="1255" y2="975" class="rule"/>
+    <text x="892" y="997" class="text">- double velocidadHusillo, desgasteHusillo</text>
+    <text x="892" y="1016" class="text">- Husillo husillo</text>
+    <line x1="875" y1="1025" x2="1255" y2="1025" class="rule"/>
+    <text x="892" y="1047" class="text">+ TornoCNC(...)</text>
+    <text x="892" y="1066" class="text">+ cilindrar() · ajustarVelocidad(double)</text>
+    <text x="892" y="1085" class="text">+ procesar(Pieza&amp;) override</text>
+    <text x="892" y="1104" class="text">+ mostrarEstado() const override</text>
+    <text x="892" y="1123" class="text">+ realizarMantenimiento() override</text>
+    <text x="892" y="1160" class="text">Agrega desviación según desgaste del husillo.</text>
+  </g>
+  <g>
+    <rect x="1295" y="920" width="380" height="270" fill="#5010ad" stroke="#a86bff" stroke-width="3"/>
+    <rect x="1295" y="920" width="380" height="22" fill="#711fe0"/>
+    <text x="1307" y="936" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="1485" y="965" text-anchor="middle" class="name">Fresadora</text>
+    <line x1="1295" y1="975" x2="1675" y2="975" class="rule"/>
+    <text x="1312" y="997" class="text">- int tiempoPorPieza</text>
+    <text x="1312" y="1016" class="text">- HerramientaDeCorte herramienta</text>
+    <line x1="1295" y1="1025" x2="1675" y2="1025" class="rule"/>
+    <text x="1312" y="1047" class="text">+ Fresadora(...)</text>
+    <text x="1312" y="1066" class="text">+ fresar() · piezasRestantesHerramienta() const</text>
+    <text x="1312" y="1085" class="text">+ procesar(Pieza&amp;) override</text>
+    <text x="1312" y="1104" class="text">+ mostrarEstado() const override</text>
+    <text x="1312" y="1123" class="text">+ realizarMantenimiento() override</text>
+    <text x="1312" y="1160" class="text">Agrega desviación según desgaste de herramienta.</text>
+  </g>
+  <g>
+    <rect x="1715" y="920" width="380" height="270" fill="#a20b3d" stroke="#ff3d7a" stroke-width="3"/>
+    <rect x="1715" y="920" width="380" height="22" fill="#d31b55"/>
+    <text x="1727" y="936" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="1905" y="965" text-anchor="middle" class="name">RobotSoldador</text>
+    <line x1="1715" y1="975" x2="2095" y2="975" class="rule"/>
+    <text x="1732" y="997" class="text">- int tiempoPorPieza</text>
+    <text x="1732" y="1016" class="text">- Antorcha antorcha</text>
+    <line x1="1715" y1="1025" x2="2095" y2="1025" class="rule"/>
+    <text x="1732" y="1047" class="text">+ RobotSoldador(...)</text>
+    <text x="1732" y="1066" class="text">+ soldar(): bool</text>
+    <text x="1732" y="1085" class="text">+ procesar(Pieza&amp;) override</text>
+    <text x="1732" y="1104" class="text">+ mostrarEstado() const override</text>
+    <text x="1732" y="1123" class="text">+ realizarMantenimiento() override</text>
+    <text x="1732" y="1160" class="text">Agrega desviación según desgaste de antorcha.</text>
+  </g>
+  <g>
+    <rect x="2135" y="920" width="430" height="270" fill="#006080" stroke="#22c8f2" stroke-width="3"/>
+    <rect x="2135" y="920" width="430" height="22" fill="#0783ac"/>
+    <text x="2147" y="936" class="badge">EXISTENTE / MODIFICADA</text>
+    <text x="2350" y="965" text-anchor="middle" class="name">EstacionDeInspeccion</text>
+    <line x1="2135" y1="975" x2="2565" y2="975" class="rule"/>
+    <text x="2152" y="997" class="text">- int tiempoPorPieza · SensorInspeccion sensor</text>
+    <text x="2152" y="1016" class="text">- int piezasAprobadas, piezasRechazadas</text>
+    <line x1="2135" y1="1025" x2="2565" y2="1025" class="rule"/>
+    <text x="2152" y="1047" class="text">+ EstacionDeInspeccion(...)</text>
+    <text x="2152" y="1066" class="text">+ inspeccionar(Pieza&amp;): bool</text>
+    <text x="2152" y="1085" class="text">+ procesar(Pieza&amp;) override</text>
+    <text x="2152" y="1104" class="text">+ mostrarEstado() const override</text>
+    <text x="2152" y="1123" class="text">+ realizarMantenimiento() override</text>
+    <text x="2152" y="1160" class="text">Compara desviación con tolerancia y decide.</text>
+  </g>
+
+  <!-- Componentes existentes -->
+  <g>
+    <rect x="35" y="1285" width="380" height="275" fill="#005364" stroke="#16d8e8" stroke-width="3"/>
+    <rect x="35" y="1285" width="380" height="22" fill="#087b90"/>
+    <text x="47" y="1301" class="badge">EXISTENTE</text>
+    <text x="225" y="1330" text-anchor="middle" class="name">MotorBanda</text>
+    <line x1="35" y1="1340" x2="415" y2="1340" class="rule"/>
+    <text x="52" y="1363" class="text">- int vidaUtil · double desgaste</text>
+    <line x1="35" y1="1373" x2="415" y2="1373" class="rule"/>
+    <text x="52" y="1396" class="text">+ MotorBanda(vidaInicial)</text>
+    <text x="52" y="1416" class="text">+ registrarUso() · estaDesgastado() const</text>
+    <text x="52" y="1436" class="text">+ restaurar() · getVidaUtil() const</text>
+    <text x="52" y="1456" class="text">+ getDesgaste() const</text>
+  </g>
+  <g>
+    <rect x="455" y="1285" width="380" height="275" fill="#685700" stroke="#f6da00" stroke-width="3"/>
+    <rect x="455" y="1285" width="380" height="22" fill="#968000"/>
+    <text x="467" y="1301" class="badge">EXISTENTE</text>
+    <text x="645" y="1330" text-anchor="middle" class="name">TuboLaser</text>
+    <line x1="455" y1="1340" x2="835" y2="1340" class="rule"/>
+    <text x="472" y="1363" class="text">- int vidaUtil · double desgaste</text>
+    <line x1="455" y1="1373" x2="835" y2="1373" class="rule"/>
+    <text x="472" y="1396" class="text">+ TuboLaser(vidaInicial)</text>
+    <text x="472" y="1416" class="text">+ registrarUso() · estaDesgastado() const</text>
+    <text x="472" y="1436" class="text">+ restaurar() · getVidaUtil() const</text>
+    <text x="472" y="1456" class="text">+ getDesgaste() const</text>
+  </g>
+  <g>
+    <rect x="875" y="1285" width="380" height="275" fill="#17602a" stroke="#8be682" stroke-width="3"/>
+    <rect x="875" y="1285" width="380" height="22" fill="#348b3d"/>
+    <text x="887" y="1301" class="badge">EXISTENTE</text>
+    <text x="1065" y="1330" text-anchor="middle" class="name">Husillo</text>
+    <line x1="875" y1="1340" x2="1255" y2="1340" class="rule"/>
+    <text x="892" y="1363" class="text">- double vidaUtil · double desgaste</text>
+    <line x1="875" y1="1373" x2="1255" y2="1373" class="rule"/>
+    <text x="892" y="1396" class="text">+ Husillo(vidaUtilInicial)</text>
+    <text x="892" y="1416" class="text">+ usar(double) · darMantenimiento()</text>
+    <text x="892" y="1436" class="text">+ estaDesgastado() const</text>
+    <text x="892" y="1456" class="text">+ getVidaUtil() const · getDesgaste() const</text>
+  </g>
+  <g>
+    <rect x="1295" y="1285" width="380" height="275" fill="#422079" stroke="#b28aff" stroke-width="3"/>
+    <rect x="1295" y="1285" width="380" height="22" fill="#6338a5"/>
+    <text x="1307" y="1301" class="badge">EXISTENTE</text>
+    <text x="1485" y="1330" text-anchor="middle" class="name">HerramientaDeCorte</text>
+    <line x1="1295" y1="1340" x2="1675" y2="1340" class="rule"/>
+    <text x="1312" y="1363" class="text">- int vidaUtil · double desgaste</text>
+    <line x1="1295" y1="1373" x2="1675" y2="1373" class="rule"/>
+    <text x="1312" y="1396" class="text">+ HerramientaDeCorte(vidaInicial)</text>
+    <text x="1312" y="1416" class="text">+ registrarUso() · estaDesgastado() const</text>
+    <text x="1312" y="1436" class="text">+ restaurar() · getVidaUtil() const</text>
+    <text x="1312" y="1456" class="text">+ getDesgaste() const</text>
+  </g>
+  <g>
+    <rect x="1715" y="1285" width="380" height="275" fill="#770d35" stroke="#ff6a9a" stroke-width="3"/>
+    <rect x="1715" y="1285" width="380" height="22" fill="#a7194e"/>
+    <text x="1727" y="1301" class="badge">EXISTENTE</text>
+    <text x="1905" y="1330" text-anchor="middle" class="name">Antorcha</text>
+    <line x1="1715" y1="1340" x2="2095" y2="1340" class="rule"/>
+    <text x="1732" y="1363" class="text">- int vidaUtil · double desgaste</text>
+    <line x1="1715" y1="1373" x2="2095" y2="1373" class="rule"/>
+    <text x="1732" y="1396" class="text">+ Antorcha(vidaInicial)</text>
+    <text x="1732" y="1416" class="text">+ registrarUso() · estaDesgastado() const</text>
+    <text x="1732" y="1436" class="text">+ restaurar() · getVidaUtil() const</text>
+    <text x="1732" y="1456" class="text">+ getDesgaste() const</text>
+  </g>
+  <g>
+    <rect x="2135" y="1285" width="430" height="275" fill="#075478" stroke="#34c6ff" stroke-width="3"/>
+    <rect x="2135" y="1285" width="430" height="22" fill="#087cad"/>
+    <text x="2147" y="1301" class="badge">EXISTENTE</text>
+    <text x="2350" y="1330" text-anchor="middle" class="name">SensorInspeccion</text>
+    <line x1="2135" y1="1340" x2="2565" y2="1340" class="rule"/>
+    <text x="2152" y="1363" class="text">- int vidaUtil · double desgaste</text>
+    <line x1="2135" y1="1373" x2="2565" y2="1373" class="rule"/>
+    <text x="2152" y="1396" class="text">+ SensorInspeccion(vidaInicial)</text>
+    <text x="2152" y="1416" class="text">+ registrarUso() · estaDesgastado() const</text>
+    <text x="2152" y="1436" class="text">+ restaurar() · getVidaUtil() const</text>
+    <text x="2152" y="1456" class="text">+ getDesgaste() const</text>
+  </g>
+</svg>

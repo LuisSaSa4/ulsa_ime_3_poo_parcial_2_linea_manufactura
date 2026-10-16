@@ -1,6 +1,5 @@
 # Propuesta de mejora:Rechazo de piezas después de la Estación de inspección
 
-> Crea una carpeta dentro de `docs/mejoras/` con tu número de matrícula como nombre, copia este archivo ahí como `mejora.md` y llena tu copia. No modifiques la plantilla.
 >
 > La propuesta es solo diseño: no se programa.
 
@@ -40,14 +39,22 @@ Hace que la inspección sí cumpla su trabajo donde aprueba o rechaza cada pieza
 
 **Interacciones nuevas entre objetos:**
 
-[Inserta aquí tu respuesta]
+La `Planta` crea una `Pieza` por cada unidad del lote y la pasa por las máquinas, en orden. Cada máquina agrega un valor a la desviación de la pieza según el desgaste de su componente. La desviación se acumula durante todo el recorrido.
+
+Al llegar a la `EstacionDeInspeccion`, se compara la desviación con la tolerancia permitida. Si no la supera, la pieza se aprueba; si la supera, se rechaza. La `Planta` cuenta ambos resultados y descarta las piezas rechazadas. Al final del lote, muestra cuántas piezas aprobó y rechazó, y el porcentaje de rechazo.
 
 **Relaciones nuevas (herencia, composición o agregación) y por qué son de ese tipo:**
 
-[Inserta aquí tu respuesta]
+`EstadoPieza` indica en qué etapa está una pieza: en proceso, aprobada o rechazada. `Pieza` guarda ese estado. No se crea una clase heredada ni un objeto separado para representarlo.
+
+Las máquinas siguen heredando de `Maquina`, como ya lo hacen. El cambio es que su operación recibe la pieza (`procesar(Pieza&)`) para poder actualizarla. La estación de inspección también hereda de `Maquina` y usa esa operación para aprobar o rechazar la pieza.
+
+`Planta` mantiene una lista de máquinas, pero no es responsable de crearlas ni destruirlas; por eso, esa relación es de agregación. La planta crea las piezas y las pasa a las máquinas para que las procesen. Las máquinas solo las usan durante el recorrido, no son sus dueñas; por eso, no hay composición entre `Maquina` y `Pieza`. Las máquinas conservan la composición con sus componentes, porque cada componente forma parte de su máquina.
 
 ## 3. Diagrama de clases
 
-Diagrama hecho en draw.io que muestre la solución con la mejora incorporada. Distingue lo nuevo de lo existente, por ejemplo con otro color. Guarda la imagen en esta misma carpeta y enlázala aquí.
+El diagrama sigue el estilo del diagrama de referencia. Las etiquetas identifican las clases nuevas, las existentes que se modifican y las existentes que permanecen sin cambios.
 
-[Inserta aquí tu diagrama]
+![Diagrama de clases de la propuesta de rechazo de piezas](./Mejora_diagrama.svg)
+
+[Abrir el diagrama editable en draw.io](./Mejora_diagrama.drawio)
