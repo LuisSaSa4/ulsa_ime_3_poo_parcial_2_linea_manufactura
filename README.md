@@ -70,9 +70,11 @@ No coincidió al primer intento porque tuvimos errores al unir las máquinas con
 
 ## 6. Diagrama general
 
-Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen como `docs/diagrama_general.png`.
+Diagramas generales de clases de la solución completa:
 
-![Diagrama general](docs/diagrama_general.png)
+![Diagrama general 1](DiagramaGeneral1.png)
+
+![Diagrama general 2](DiagramaGeneral2.png)
 
 ## 7. Documentación individual
 
