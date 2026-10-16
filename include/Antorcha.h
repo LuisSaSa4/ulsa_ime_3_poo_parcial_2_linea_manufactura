@@ -1,33 +1,30 @@
+
 #ifndef ANTORCHA_H
 #define ANTORCHA_H
 
-class Antorcha{
-    private:
-    //Cantidad maxima de usos que soprta la antorcha
+// Componente utilizado por el RobotSoldador.
+// Controla su vida util y el desgaste acumulado.
+class Antorcha {
+private:
     int vidaUtil;
-
-    //Cantidad de usos acumulados
     double desgaste;
 
-    public:
-    //Constructor que establece la vida util inicial
-    explicit Antorcha(int vidaInicial);
+public:
+    // Constructor del componente.
+    Antorcha(int vidaInicial);
 
-    //Resistrar el uso del la antorcha
+    // Registra el uso de la antorcha al soldar una pieza.
     void registrarUso();
 
-    //Indica si la antorcha alcanzo si limite de desgaste
+    // Comprueba si la antorcha alcanzo su vida util.
     bool estaDesgastado() const;
 
-    //Reinicia el desgaste despues del mantenimiento
+    // Restaura la antorcha despues del mantenimiento.
     void restaurar();
 
-    //Obtener la vida util maxima de la antorcha
+    // Permiten consultar el estado del componente.
     int getVidaUtil() const;
-
-    //Obtener la vida util maxima de la antorcha
-    int getDesgaste() const;
-
+    double getDesgaste() const;
 };
 
 #endif

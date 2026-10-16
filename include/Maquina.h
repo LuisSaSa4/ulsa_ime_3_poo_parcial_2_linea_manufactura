@@ -4,13 +4,7 @@
 
 #include <string>
 
-// Clase base de todas las máquinas de la línea de manufactura.
-//
-// Este archivo es la INTERFAZ: declara los atributos y métodos
-// generales de cualquier máquina.
-//
-// La implementación se encuentra en src/Maquina.cpp.
-
+// Clase base de todas las máquinas de la planta.
 class Maquina {
 private:
     int id;
@@ -22,57 +16,67 @@ private:
     int paros;
 
 protected:
-    // Suma una pieza procesada.
+    // Registra una pieza procesada.
     void registrarPieza();
 
-    // Acumula tiempo trabajado.
-    // Los valores negativos o cero no se aceptan.
+    // Acumula el tiempo de trabajo en segundos.
     void agregarTiempo(int segundos);
 
-    // Pone la máquina en falla.
+    // Registra una falla en la máquina.
     void reportarFalla();
 
-    // Quita la falla y suma un paro.
+    // Registra el mantenimiento y permite volver a operar.
     void registrarMantenimiento();
 
 public:
-    // Constructor.
+    // Constructor de la clase Maquina.
     Maquina(int id, const std::string& nombre);
 
-    // Destructor virtual para permitir la destrucción correcta
-    // de objetos de clases derivadas.
+    // Permite destruir correctamente objetos de clases derivadas.
     virtual ~Maquina() = default;
 
-    // Enciende la máquina. No elimina una falla.
+    // Enciende la máquina.
+    // Encenderla no elimina una falla existente.
     void encender();
 
     // Apaga la máquina.
     void apagar();
 
-    // Consultas del estado de la máquina.
+    // Consulta si la máquina está encendida.
     bool estaEncendida() const;
+
+    // Consulta si la máquina está en falla.
     bool estaEnFalla() const;
+
+    // Comprueba si la máquina puede procesar una pieza.
     bool puedeProcesar() const;
 
-    // Obtener información de la máquina.
+    // Devuelve el identificador de la máquina.
     int getId() const;
+
+    // Devuelve el nombre de la máquina.
     std::string getNombre() const;
+
+    // Devuelve la cantidad de piezas procesadas.
     int getPiezasProcesadas() const;
+
+    // Devuelve el tiempo total trabajado en segundos.
     int getTiempoTrabajado() const;
+
+    // Devuelve la cantidad de paros por mantenimiento.
     int getParos() const;
 
-    // Ejecuta la operacion propia de cada maquina.
-    virtual bool procesarOperacion() = 0;
-
-    // Muestra los datos generales de la máquina.
-    // Es virtual para permitir que las clases derivadas
-    // muestren también la información de sus propios atributos.
+    // Muestra el estado general de la máquina.
+    // Las clases derivadas pueden agregar información propia.
     virtual void mostrarEstado() const;
 
+    // Cada máquina implementa su propia operación.
+    virtual bool procesarOperacion() = 0;
+
     // Realiza el mantenimiento general de la máquina.
-    // Las clases derivadas pueden redefinir este método
-    // para restaurar primero sus propios componentes.
+    // Las clases derivadas pueden restaurar su componente.
     virtual void realizarMantenimiento();
 };
 
 #endif
+
