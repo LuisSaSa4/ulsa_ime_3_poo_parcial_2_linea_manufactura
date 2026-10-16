@@ -1,3 +1,5 @@
+
+
 #include "Planta.h"
 #include "BandaTransportadora.h"
 #include "CortadoraLaser.h"
@@ -14,12 +16,12 @@ int main() {
     std::cout << "========================================\n";
 
     // Creamos las maquinas con sus tiempos y vidas utiles.
-    BandaTransportadora banda(1, "Banda-01", 4, 7);
-    CortadoraLaser laser(2, "Laser-01", 12, 6);
-    TornoCNC torno(3, "Torno-01", 10, 8);
-    Fresadora fresadora(4, "Fresadora-01", 8, 5);
-    RobotSoldador robot(5, "Robot-01", 6, 9);
-    EstacionDeInspeccion inspeccion(6, "Inspeccion-01", 5, 10);
+    BandaTransportadora banda(1, "Banda", 4, 7);
+    CortadoraLaser laser(2, "Laser", 12, 6);
+    TornoCNC torno(3, "Torno", 10, 8);
+    Fresadora fresadora(4, "Fresadora", 8, 5);
+    RobotSoldador robot(5, "Robot", 6, 9);
+    EstacionDeInspeccion inspeccion(6, "Inspeccion", 5, 10);
 
     // Creamos la planta y registramos las estaciones en orden.
     Planta planta;
@@ -54,3 +56,6 @@ int main() {
 
     return 0;
 }
+
+
+
