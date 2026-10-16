@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1100" viewBox="0 0 2100 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Diagrama de clases de Fresadora</title>
+  <desc id="desc">Maquina es la clase base abstracta de Fresadora. Fresadora contiene por composición una HerramientaDeCorte.</desc>
+  <defs>
+    <marker id="inheritance" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto">
+      <path d="M1 1 L14 8 L1 15 Z" fill="#000000" stroke="#315B7D" stroke-width="1.5"/>
+    </marker>
+    <marker id="composition" markerWidth="18" markerHeight="18" refX="2" refY="9" orient="auto">
+      <path d="M2 9 L9 2 L16 9 L9 16 Z" fill="#000000" stroke="#315B7D" stroke-width="1.5"/>
+    </marker>
+    <style>
+      .box { fill:#000; stroke:#315B7D; stroke-width:2.5; }
+      .line { stroke:#315B7D; stroke-width:2.5; fill:none; }
+      .txt { fill:#fff; font:14px Consolas, 'Courier New', monospace; }
+      .head { fill:#fff; font:bold 20px Arial, sans-serif; }
+      .abstract { fill:#fff; font:italic 15px Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <rect x="40" y="40" width="640" height="1000" class="box"/>
+  <text x="360" y="75" text-anchor="middle" class="abstract">&lt;&lt;abstract&gt;&gt;</text>
+  <text x="360" y="102" text-anchor="middle" class="head" font-style="italic">Maquina</text>
+  <line x1="40" y1="120" x2="680" y2="120" class="line"/>
+  <text x="62" y="181" class="txt">
+    <tspan x="62" dy="0">- id: int</tspan>
+    <tspan x="62" dy="24">- nombre: string</tspan>
+    <tspan x="62" dy="24">- encendida: bool</tspan>
+    <tspan x="62" dy="24">- enFalla: bool</tspan>
+    <tspan x="62" dy="24">- piezasProcesadas: int</tspan>
+    <tspan x="62" dy="24">- tiempoTrabajado: int</tspan>
+    <tspan x="62" dy="24">- paros: int</tspan>
+  </text>
+  <line x1="40" y1="340" x2="680" y2="340" class="line"/>
+  <text x="62" y="367" class="txt">
+    <tspan x="62" dy="0">+ Maquina(id: int, nombre: string)</tspan>
+    <tspan x="62" dy="23">+ encender(): void</tspan>
+    <tspan x="62" dy="23">+ apagar(): void</tspan>
+    <tspan x="62" dy="23">+ estaEncendida(): bool</tspan>
+    <tspan x="62" dy="23">+ estaEnFalla(): bool</tspan>
+    <tspan x="62" dy="23">+ puedeProcesar(): bool</tspan>
+    <tspan x="62" dy="23">+ getId(): int</tspan>
+    <tspan x="62" dy="23">+ getNombre(): string</tspan>
+    <tspan x="62" dy="23">+ getPiezasProcesadas(): int</tspan>
+    <tspan x="62" dy="23">+ getTiempoTrabajado(): int</tspan>
+    <tspan x="62" dy="23">+ getParos(): int</tspan>
+    <tspan x="62" dy="23">+ mostrarEstado(): void</tspan>
+    <tspan x="62" dy="23">+ procesarOperacion(): bool {abstract}</tspan>
+    <tspan x="62" dy="23">+ realizarMantenimiento(): void</tspan>
+    <tspan x="62" dy="23"># registrarPieza(): void</tspan>
+    <tspan x="62" dy="23"># agregarTiempo(segundos: int): void</tspan>
+    <tspan x="62" dy="23"># reportarFalla(): void</tspan>
+    <tspan x="62" dy="23"># registrarMantenimiento(): void</tspan>
+  </text>
+
+  <rect x="800" y="280" width="540" height="400" class="box"/>
+  <text x="1070" y="313" text-anchor="middle" class="head">Fresadora</text>
+  <line x1="800" y1="330" x2="1340" y2="330" class="line"/>
+  <text x="822" y="359" class="txt">
+    <tspan x="822" dy="0">- tiempoPorPieza: int</tspan>
+    <tspan x="822" dy="24">- herramienta: HerramientaDeCorte</tspan>
+  </text>
+  <line x1="800" y1="405" x2="1340" y2="405" class="line"/>
+  <text x="822" y="435" class="txt">
+    <tspan x="822" dy="0">+ Fresadora(id, nombre,</tspan>
+    <tspan x="822" dy="23">  tiempoPorPieza, vidaUtilHerramienta)</tspan>
+    <tspan x="822" dy="23">+ fresar(): bool</tspan>
+    <tspan x="822" dy="23">+ procesarOperacion(): bool</tspan>
+    <tspan x="822" dy="23">+ mostrarEstado(): void</tspan>
+    <tspan x="822" dy="23">+ realizarMantenimiento(): void</tspan>
+  </text>
+
+  <rect x="1480" y="285" width="570" height="380" class="box"/>
+  <text x="1765" y="319" text-anchor="middle" class="head">HerramientaDeCorte</text>
+  <line x1="1480" y1="337" x2="2050" y2="337" class="line"/>
+  <text x="1502" y="366" class="txt">
+    <tspan x="1502" dy="0">- vidaUtil: int</tspan>
+    <tspan x="1502" dy="24">- desgaste: double</tspan>
+  </text>
+  <line x1="1480" y1="412" x2="2050" y2="412" class="line"/>
+  <text x="1502" y="440" class="txt">
+    <tspan x="1502" dy="0">+ HerramientaDeCorte(</tspan>
+    <tspan x="1502" dy="23">  vidaInicial: int)</tspan>
+    <tspan x="1502" dy="23">+ registrarUso(): void</tspan>
+    <tspan x="1502" dy="23">+ estaDesgastado(): bool</tspan>
+    <tspan x="1502" dy="23">+ restaurar(): void</tspan>
+    <tspan x="1502" dy="23">+ getVidaUtil(): int</tspan>
+    <tspan x="1502" dy="23">+ getDesgaste(): double</tspan>
+  </text>
+
+  <path d="M800 430 H740 V430 H680" class="line" marker-end="url(#inheritance)"/>
+  <path d="M1340 430 H1410 V430 H1480" class="line" marker-start="url(#composition)"/>
+  <text x="1435" y="415" class="txt" font-size="14">1</text>
+</svg>
