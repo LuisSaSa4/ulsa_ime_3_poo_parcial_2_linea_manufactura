@@ -1,93 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1100" viewBox="0 0 2100 1100" role="img" aria-labelledby="title desc">
-  <title id="title">Diagrama de clases de Fresadora</title>
-  <desc id="desc">Maquina es la clase base abstracta de Fresadora. Fresadora contiene por composición una HerramientaDeCorte.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="1280" viewBox="0 0 1450 1280" role="img" aria-labelledby="title desc">
+  <title id="title">Diagrama de clases: Fresadora</title>
+  <desc id="desc">La Fresadora hereda de Maquina y contiene por composición una HerramientaDeCorte.</desc>
   <defs>
-    <marker id="inheritance" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto">
-      <path d="M1 1 L14 8 L1 15 Z" fill="#000000" stroke="#315B7D" stroke-width="1.5"/>
+    <linearGradient id="machine" x2="0" y2="1">
+      <stop stop-color="#85002C"/>
+      <stop offset="1" stop-color="#51001D"/>
+    </linearGradient>
+    <linearGradient id="milling" x2="0" y2="1">
+      <stop stop-color="#6923D5"/>
+      <stop offset="1" stop-color="#351078"/>
+    </linearGradient>
+    <linearGradient id="tool" x2="0" y2="1">
+      <stop stop-color="#593B9A"/>
+      <stop offset="1" stop-color="#33215A"/>
+    </linearGradient>
+    <marker id="inheritance" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto">
+      <path d="M1 1 L16 9 L1 17 Z" fill="#000" stroke="#fff" stroke-width="1.5"/>
     </marker>
     <marker id="composition" markerWidth="18" markerHeight="18" refX="2" refY="9" orient="auto">
-      <path d="M2 9 L9 2 L16 9 L9 16 Z" fill="#000000" stroke="#315B7D" stroke-width="1.5"/>
+      <path d="M2 9 L9 2 L16 9 L9 16 Z" fill="#fff" stroke="#fff" stroke-width="1"/>
     </marker>
     <style>
-      .box { fill:#000; stroke:#315B7D; stroke-width:2.5; }
-      .line { stroke:#315B7D; stroke-width:2.5; fill:none; }
-      .txt { fill:#fff; font:14px Consolas, 'Courier New', monospace; }
-      .head { fill:#fff; font:bold 20px Arial, sans-serif; }
-      .abstract { fill:#fff; font:italic 15px Arial, sans-serif; }
+      .box { stroke-width:2.5; }
+      .line { stroke:#fff; stroke-width:2.5; fill:none; }
+      .txt { fill:#fff; font:14px Arial, sans-serif; }
+      .head { fill:#fff; font:bold 18px Arial, sans-serif; }
+      .abstract { fill:#fff; font:italic 14px Arial, sans-serif; }
     </style>
   </defs>
+  <rect width="1450" height="1280" fill="#000"/>
 
-  <rect x="40" y="40" width="640" height="1000" class="box"/>
-  <text x="360" y="75" text-anchor="middle" class="abstract">&lt;&lt;abstract&gt;&gt;</text>
-  <text x="360" y="102" text-anchor="middle" class="head" font-style="italic">Maquina</text>
-  <line x1="40" y1="120" x2="680" y2="120" class="line"/>
-  <text x="62" y="181" class="txt">
-    <tspan x="62" dy="0">- id: int</tspan>
-    <tspan x="62" dy="24">- nombre: string</tspan>
-    <tspan x="62" dy="24">- encendida: bool</tspan>
-    <tspan x="62" dy="24">- enFalla: bool</tspan>
-    <tspan x="62" dy="24">- piezasProcesadas: int</tspan>
-    <tspan x="62" dy="24">- tiempoTrabajado: int</tspan>
-    <tspan x="62" dy="24">- paros: int</tspan>
+  <rect x="420" y="35" width="610" height="650" rx="3" fill="url(#machine)" stroke="#F31851" class="box"/>
+  <text x="725" y="61" text-anchor="middle" class="abstract">&lt;&lt;abstract&gt;&gt;</text>
+  <text x="725" y="84" text-anchor="middle" class="head" font-style="italic">Maquina</text>
+  <line x1="420" y1="96" x2="1030" y2="96" class="line"/>
+  <text x="438" y="119" class="txt">
+    <tspan x="438" dy="0">- int id</tspan>
+    <tspan x="438" dy="22">- string nombre</tspan>
+    <tspan x="438" dy="22">- bool encendida</tspan>
+    <tspan x="438" dy="22">- bool enFalla</tspan>
+    <tspan x="438" dy="22">- int piezasProcesadas</tspan>
+    <tspan x="438" dy="22">- int tiempoTrabajado</tspan>
+    <tspan x="438" dy="22">- int paros</tspan>
   </text>
-  <line x1="40" y1="340" x2="680" y2="340" class="line"/>
-  <text x="62" y="367" class="txt">
-    <tspan x="62" dy="0">+ Maquina(id: int, nombre: string)</tspan>
-    <tspan x="62" dy="23">+ encender(): void</tspan>
-    <tspan x="62" dy="23">+ apagar(): void</tspan>
-    <tspan x="62" dy="23">+ estaEncendida(): bool</tspan>
-    <tspan x="62" dy="23">+ estaEnFalla(): bool</tspan>
-    <tspan x="62" dy="23">+ puedeProcesar(): bool</tspan>
-    <tspan x="62" dy="23">+ getId(): int</tspan>
-    <tspan x="62" dy="23">+ getNombre(): string</tspan>
-    <tspan x="62" dy="23">+ getPiezasProcesadas(): int</tspan>
-    <tspan x="62" dy="23">+ getTiempoTrabajado(): int</tspan>
-    <tspan x="62" dy="23">+ getParos(): int</tspan>
-    <tspan x="62" dy="23">+ mostrarEstado(): void</tspan>
-    <tspan x="62" dy="23">+ procesarOperacion(): bool {abstract}</tspan>
-    <tspan x="62" dy="23">+ realizarMantenimiento(): void</tspan>
-    <tspan x="62" dy="23"># registrarPieza(): void</tspan>
-    <tspan x="62" dy="23"># agregarTiempo(segundos: int): void</tspan>
-    <tspan x="62" dy="23"># reportarFalla(): void</tspan>
-    <tspan x="62" dy="23"># registrarMantenimiento(): void</tspan>
-  </text>
-
-  <rect x="800" y="280" width="540" height="400" class="box"/>
-  <text x="1070" y="313" text-anchor="middle" class="head">Fresadora</text>
-  <line x1="800" y1="330" x2="1340" y2="330" class="line"/>
-  <text x="822" y="359" class="txt">
-    <tspan x="822" dy="0">- tiempoPorPieza: int</tspan>
-    <tspan x="822" dy="24">- herramienta: HerramientaDeCorte</tspan>
-  </text>
-  <line x1="800" y1="405" x2="1340" y2="405" class="line"/>
-  <text x="822" y="435" class="txt">
-    <tspan x="822" dy="0">+ Fresadora(id, nombre,</tspan>
-    <tspan x="822" dy="23">  tiempoPorPieza, vidaUtilHerramienta)</tspan>
-    <tspan x="822" dy="23">+ fresar(): bool</tspan>
-    <tspan x="822" dy="23">+ procesarOperacion(): bool</tspan>
-    <tspan x="822" dy="23">+ mostrarEstado(): void</tspan>
-    <tspan x="822" dy="23">+ realizarMantenimiento(): void</tspan>
+  <line x1="420" y1="278" x2="1030" y2="278" class="line"/>
+  <text x="438" y="302" class="txt">
+    <tspan x="438" dy="0">+ Maquina(int id, const string&amp; nombre)</tspan>
+    <tspan x="438" dy="20">+ virtual ~Maquina()</tspan>
+    <tspan x="438" dy="20">+ void encender()</tspan>
+    <tspan x="438" dy="20">+ void apagar()</tspan>
+    <tspan x="438" dy="20">+ bool estaEncendida() const</tspan>
+    <tspan x="438" dy="20">+ bool estaEnFalla() const</tspan>
+    <tspan x="438" dy="20">+ bool puedeProcesar() const</tspan>
+    <tspan x="438" dy="20">+ int getId() const</tspan>
+    <tspan x="438" dy="20">+ string getNombre() const</tspan>
+    <tspan x="438" dy="20">+ int getPiezasProcesadas() const</tspan>
+    <tspan x="438" dy="20">+ int getTiempoTrabajado() const</tspan>
+    <tspan x="438" dy="20">+ int getParos() const</tspan>
+    <tspan x="438" dy="20">+ virtual void mostrarEstado() const</tspan>
+    <tspan x="438" dy="20">+ virtual bool procesarOperacion() = 0</tspan>
+    <tspan x="438" dy="20">+ virtual void realizarMantenimiento()</tspan>
+    <tspan x="438" dy="20"># void registrarPieza()</tspan>
+    <tspan x="438" dy="20"># void agregarTiempo(int segundos)</tspan>
+    <tspan x="438" dy="20"># void reportarFalla()</tspan>
+    <tspan x="438" dy="20"># void registrarMantenimiento()</tspan>
   </text>
 
-  <rect x="1480" y="285" width="570" height="380" class="box"/>
-  <text x="1765" y="319" text-anchor="middle" class="head">HerramientaDeCorte</text>
-  <line x1="1480" y1="337" x2="2050" y2="337" class="line"/>
-  <text x="1502" y="366" class="txt">
-    <tspan x="1502" dy="0">- vidaUtil: int</tspan>
-    <tspan x="1502" dy="24">- desgaste: double</tspan>
+  <rect x="90" y="850" width="570" height="350" rx="3" fill="url(#milling)" stroke="#A450FF" class="box"/>
+  <text x="375" y="883" text-anchor="middle" class="head">Fresadora</text>
+  <line x1="90" y1="897" x2="660" y2="897" class="line"/>
+  <text x="108" y="922" class="txt">
+    <tspan x="108" dy="0">- int tiempoPorPieza</tspan>
+    <tspan x="108" dy="22">- HerramientaDeCorte herramienta</tspan>
   </text>
-  <line x1="1480" y1="412" x2="2050" y2="412" class="line"/>
-  <text x="1502" y="440" class="txt">
-    <tspan x="1502" dy="0">+ HerramientaDeCorte(</tspan>
-    <tspan x="1502" dy="23">  vidaInicial: int)</tspan>
-    <tspan x="1502" dy="23">+ registrarUso(): void</tspan>
-    <tspan x="1502" dy="23">+ estaDesgastado(): bool</tspan>
-    <tspan x="1502" dy="23">+ restaurar(): void</tspan>
-    <tspan x="1502" dy="23">+ getVidaUtil(): int</tspan>
-    <tspan x="1502" dy="23">+ getDesgaste(): double</tspan>
+  <line x1="90" y1="970" x2="660" y2="970" class="line"/>
+  <text x="108" y="996" class="txt">
+    <tspan x="108" dy="0">+ Fresadora(int id, const string&amp; nombre,</tspan>
+    <tspan x="108" dy="20">  int tiempoPorPieza, int vidaUtilHerramienta)</tspan>
+    <tspan x="108" dy="20">+ bool fresar()</tspan>
+    <tspan x="108" dy="20">+ int piezasRestantesHerramienta() const</tspan>
+    <tspan x="108" dy="20">+ bool procesarOperacion()</tspan>
+    <tspan x="108" dy="20">+ void mostrarEstado() const</tspan>
+    <tspan x="108" dy="20">+ void realizarMantenimiento()</tspan>
   </text>
 
-  <path d="M800 430 H740 V430 H680" class="line" marker-end="url(#inheritance)"/>
-  <path d="M1340 430 H1410 V430 H1480" class="line" marker-start="url(#composition)"/>
-  <text x="1435" y="415" class="txt" font-size="14">1</text>
+  <rect x="790" y="850" width="570" height="350" rx="3" fill="url(#tool)" stroke="#9672E8" class="box"/>
+  <text x="1075" y="883" text-anchor="middle" class="head">HerramientaDeCorte</text>
+  <line x1="790" y1="897" x2="1360" y2="897" class="line"/>
+  <text x="808" y="922" class="txt">
+    <tspan x="808" dy="0">- int vidaUtil</tspan>
+    <tspan x="808" dy="22">- double desgaste</tspan>
+  </text>
+  <line x1="790" y1="970" x2="1360" y2="970" class="line"/>
+  <text x="808" y="996" class="txt">
+    <tspan x="808" dy="0">+ HerramientaDeCorte(int vidaInicial)</tspan>
+    <tspan x="808" dy="20">+ void registrarUso()</tspan>
+    <tspan x="808" dy="20">+ bool estaDesgastado() const</tspan>
+    <tspan x="808" dy="20">+ void restaurar()</tspan>
+    <tspan x="808" dy="20">+ int getVidaUtil() const</tspan>
+    <tspan x="808" dy="20">+ double getDesgaste() const</tspan>
+  </text>
+
+  <path d="M375 850 V760 H725 V685" class="line" marker-end="url(#inheritance)"/>
+  <path d="M660 1025 H790" class="line" marker-start="url(#composition)"/>
+  <text x="720" y="1008" class="txt">1</text>
 </svg>

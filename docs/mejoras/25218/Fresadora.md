@@ -26,7 +26,7 @@ Su componente es `HerramientaDeCorte`, que se desgasta con cada pieza fresada. L
 
 **Métodos propios (los que la clase base no tiene):**
 
-`fresar()` es el método propio de la fresadora: realiza la operación y devuelve `true` si procesa la pieza, o `false` si la máquina no está disponible o la herramienta ya llegó al límite. `procesarOperacion()` no es un método nuevo de la clase: sobrescribe la operación virtual pura de `Maquina` y delega en `fresar()`, permitiendo que la planta use una interfaz común para máquinas distintas.
+`fresar()` realiza la operación de ranurado y devuelve `true` si procesa la pieza, o `false` si la máquina no está disponible o la herramienta ya llegó al límite. `piezasRestantesHerramienta()` consulta y devuelve cuántas piezas puede procesar la herramienta antes de desgastarse; devuelve `0` cuando ya alcanzó el límite. 
 
 **Método de la base que redefines, y cómo reutilizas la versión de la base:**
 
@@ -38,7 +38,7 @@ Cada pieza procesada suma una unidad de desgaste a la herramienta. Al llegar al 
 
 **¿Qué usa tu clase de `Maquina` y qué agrega?**
 
-Usa el estado general y los métodos heredados: `puedeProcesar()` para comprobar si está disponible; `registrarPieza()` y `agregarTiempo()` para actualizar la producción; `reportarFalla()` para registrar que la herramienta llegó a su límite; `getNombre()` para mostrar mensajes; y `Maquina::mostrarEstado()` y `Maquina::realizarMantenimiento()` para reutilizar el comportamiento general. Agrega el tiempo por pieza, la herramienta compuesta y la operación de fresado con su gestión de desgaste.
+Usa el estado general y los métodos heredados: `puedeProcesar()` para comprobar si está disponible; `registrarPieza()` y `agregarTiempo()` para actualizar la producción; `reportarFalla()` para registrar que la herramienta llegó a su límite; `getNombre()` para mostrar mensajes; y `Maquina::mostrarEstado()` y `Maquina::realizarMantenimiento()` para reutilizar el comportamiento general. Agrega el tiempo por pieza, la herramienta compuesta, la operación de ranurado y la consulta de piezas restantes de la herramienta.
 
 ## 3. Diagrama
 

@@ -81,7 +81,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | Néstor Hiram López Valdovinos | [Fresadora](docs/mejoras/25218/Fresadora.md) | [Propuesta](docs/mejoras/25218/Mejora.md) |
 | Luis Samano Saavedra | [RobotSoldador](docs/mejoras/24090/RobotSoldador.md) | [Propuesta](docs/mejoras/24090/mejora.md) |
 | Diego Jiménez Mena | [Estacion_inspeccion](docs/mejoras/25128/Estacion_inspeccion.md) | [Propuesta](docs/mejoras/25128/Mejora.md) |
-| Diego Simental | No disponible en el repositorio | [Propuesta](docs/mejoras/25104/mejora.md) |
+| Diego Simental | | [Propuesta](docs/mejoras/25104/mejora.md) |
 | | | |
 | | | |
 

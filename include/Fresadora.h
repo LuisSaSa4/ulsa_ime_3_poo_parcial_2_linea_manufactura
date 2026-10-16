@@ -23,6 +23,9 @@ public:
     // Ejecuta el fresado de una pieza.
     bool fresar();
 
+    // Consulta cuantas piezas puede procesar antes de desgastar la herramienta.
+    int piezasRestantesHerramienta() const;
+
     // Operacion que la planta invoca de manera polimorfica.
     bool procesarOperacion() override;
 
