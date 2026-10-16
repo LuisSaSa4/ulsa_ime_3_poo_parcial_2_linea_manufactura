@@ -40,14 +40,13 @@ Cada medición llama a registrarUso(), que resta 1 a vidaUtil y actualiza desgas
 
 **¿Qué usa tu clase de `Maquina` y qué agrega?**
 
-Usa: el constructor con lista de inicialización, los métodos protegidos registrarPieza(), agregarTiempo(), reportarFalla() y registrarMantenimiento(), además de puedeProcesar() y mostrarEstado().
-Agrega: el tiempo por pieza, el sensor con su desgaste, inspeccionar() y las versiones propias de procesarOperacion(), realizarMantenimiento() y mostrarEstado().
+
 
 ## 3. Diagrama
 
 Diagrama de tu clase y su componente, hecho en draw.io. Debe mostrar la relación de herencia con `Maquina` y la de composición con tu componente. Guarda la imagen en `docs/` y enlázala aquí.
 
-[Inserta aquí tu diagrama]
+![EstacionDeInspeccion](./EstacionDeInspeccion%20Maintenance%20Architecture-2026-10-16-142627.png)
 
 ## 4. Bitácora
 
