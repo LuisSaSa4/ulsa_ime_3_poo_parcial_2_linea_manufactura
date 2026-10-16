@@ -4,12 +4,19 @@
 #include <iostream>
 #include <stdexcept>
 
-// Constructor que inicializa el robot soldador y su componente.
+// Constructor del RobotSoldador.
+// Inicializa la clase base, el tiempo de soldadura y la antorcha.
 RobotSoldador::RobotSoldador(
     int id,
-    const std::string& nombre,int tiempoPorPieza,int vidaUtilAntorcha): Maquina(id, nombre),tiempoPorPieza(tiempoPorPieza),antorcha(vidaUtilAntorcha) {
+    const std::string& nombre,
+    int tiempoPorPieza,
+    int vidaUtilAntorcha
+)
+    : Maquina(id, nombre),
+      tiempoPorPieza(tiempoPorPieza),
+      antorcha(vidaUtilAntorcha) {
 
-    // Validar que el tiempo de soldadura sea mayor que cero.
+    // El tiempo de procesamiento debe ser positivo.
     if (tiempoPorPieza <= 0) {
         throw std::invalid_argument(
             "El tiempo por pieza debe ser mayor que cero."
@@ -17,75 +24,84 @@ RobotSoldador::RobotSoldador(
     }
 }
 
-// Realizar el proceso de soldadura de una pieza.
+// Realiza la soldadura de una pieza.
 bool RobotSoldador::soldar() {
-    // Verificar que el robot esté encendido y no presente fallas.
+
+    // Verifica que el robot este encendido y sin fallas.
     if (!puedeProcesar()) {
-        std::cout << "El robot soldador no puede procesar: "
-                  << "esta apagado o en falla.\n";
+        std::cout << "El robot " << getNombre()
+                  << " no puede soldar.\n";
         return false;
     }
 
-    // Mostrar el inicio del proceso de soldadura.
-    std::cout << "Robot soldador soldando pieza "
-              << getPiezasProcesadas() + 1 << "...\n";
-
-    // Registrar la pieza procesada.
-    registrarPieza();
-
-    // Acumular el tiempo que tardó la soldadura.
-    agregarTiempo(tiempoPorPieza);
-
-    // Registrar el uso de la antorcha.
-    antorcha.registrarUso();
-
-    // Comprobar si la antorcha alcanzó su límite de desgaste.
+    // Comprueba el desgaste antes de comenzar.
     if (antorcha.estaDesgastado()) {
-        std::cout << "FALLA DETECTADA: la antorcha alcanzo "
-                  << "su limite de vida util.\n";
-
-        // Registrar la falla en la máquina.
         reportarFalla();
-
-        // Realizar el mantenimiento para restaurar la antorcha.
-        realizarMantenimiento();
+        return false;
     }
 
-    // Indicar que la pieza se procesó correctamente.
+    std::cout << "Robot " << getNombre()
+              << " soldando una pieza...\n";
+
+    // Registra las estadisticas de la operacion.
+    registrarPieza();
+    agregarTiempo(tiempoPorPieza);
+
+    // Cada pieza soldada desgasta la antorcha.
+    antorcha.registrarUso();
+
+    std::cout << "Pieza soldada correctamente.\n";
+
+    // Si la antorcha llego a su limite, se reporta la falla.
+    if (antorcha.estaDesgastado()) {
+        reportarFalla();
+    }
+
+    // La pieza actual se completo correctamente.
     return true;
 }
 
+// Metodo que Planta utilizara para procesar una pieza.
 bool RobotSoldador::procesarOperacion() {
     return soldar();
 }
 
-// Mostrar el estado general del robot y de su antorcha.
+// Muestra el estado general y particular del robot.
 void RobotSoldador::mostrarEstado() const {
-    // Mostrar primero la información general de la máquina.
+
+    // Reutiliza el metodo de la clase base.
     Maquina::mostrarEstado();
 
-    // Mostrar la información específica del robot soldador.
+    std::cout << "--- Datos del Robot Soldador ---\n";
     std::cout << "Tiempo por pieza: "
               << tiempoPorPieza << " segundos\n";
 
-    // Mostrar la vida útil y el desgaste de la antorcha.
     std::cout << "Vida util de la antorcha: "
-              << antorcha.getVidaUtil() << " usos\n";
+              << antorcha.getVidaUtil() << '\n';
 
     std::cout << "Desgaste de la antorcha: "
               << antorcha.getDesgaste() << '\n';
 }
 
-// Realizar el mantenimiento específico del robot soldador.
+// Realiza el mantenimiento del robot soldador.
 void RobotSoldador::realizarMantenimiento() {
-    std::cout << "\nIniciando mantenimiento del robot soldador...\n";
 
-    // Restaurar el desgaste del componente.
+    // Solo se realiza si existe una falla.
+    if (!estaEnFalla()) {
+        std::cout << "El robot " << getNombre()
+                  << " no necesita mantenimiento.\n";
+        return;
+    }
+
+    std::cout << "Realizando mantenimiento al robot "
+              << getNombre() << "...\n";
+
+    // Primero se restaura el componente.
     antorcha.restaurar();
 
-    std::cout << "Desgaste de la antorcha reiniciado.\n";
-
-    // Ejecutar el mantenimiento general de la clase base.
-    // Esto elimina la falla y registra un paro.
+    // Despues se registra el mantenimiento general.
     Maquina::realizarMantenimiento();
+
+    std::cout << "Antorcha restaurada. Desgaste actual: "
+              << antorcha.getDesgaste() << '\n';
 }

@@ -1,35 +1,36 @@
-#ifndef ROBOT_SOLDADOR_H
-#define ROBOT_SOLDADOR_H
+
+#ifndef ROBOTSOLDADOR_H
+#define ROBOTSOLDADOR_H
 
 #include "Maquina.h"
 #include "Antorcha.h"
 
+#include <string>
 
-// Hereda los atributos y métodos generales de Maquina.
-// Tiene una Antorcha como componente propio por composición.
-
+// Maquina encargada de realizar operaciones de soldadura.
+// Hereda las caracteristicas generales de Maquina.
 class RobotSoldador : public Maquina {
 private:
-    // Tiempo necesario para soldar una pieza, en segundos.
     int tiempoPorPieza;
 
-    // Componente que se desgasta con cada uso.
+    // Composicion: el robot contiene su propia antorcha.
     Antorcha antorcha;
 
 public:
-    // Constructor que inicializa la máquina y su componente.
+    // Constructor del robot soldador.
     RobotSoldador(int id, const std::string& nombre,
-                  int tiempoPorPieza, int vidaUtilAntorcha);
+                 int tiempoPorPieza, int vidaUtilAntorcha);
 
-    // Realiza el proceso de soldadura.
-    // Devuelve true si la pieza fue procesada correctamente.
+    // Operacion especifica del robot.
     bool soldar();
+
+    // Implementa la operacion requerida por Maquina.
     bool procesarOperacion() override;
 
-    // Muestra el estado general y la información de la antorcha.
+    // Muestra el estado general y los datos del robot.
     void mostrarEstado() const override;
 
-    // Realiza el mantenimiento del robot y restaura la antorcha.
+    // Restaura la antorcha y registra el mantenimiento.
     void realizarMantenimiento() override;
 };
 

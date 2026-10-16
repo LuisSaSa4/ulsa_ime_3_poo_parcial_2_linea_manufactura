@@ -1,12 +1,9 @@
-
 #include "Maquina.h"
 
 #include <iostream>
 
-using namespace std;
-
-// Constructor que inicializa los datos de la máquina.
-Maquina::Maquina(int id, const string& nombre)
+// Constructor de la clase Maquina.
+Maquina::Maquina(int id, const std::string& nombre)
     : id(id),
       nombre(nombre),
       encendida(false),
@@ -16,119 +13,117 @@ Maquina::Maquina(int id, const string& nombre)
       paros(0) {
 }
 
-// Encender la máquina.
+// Enciende la máquina.
+// Encenderla no elimina una falla existente.
 void Maquina::encender() {
     encendida = true;
+
+    std::cout << "Maquina " << nombre << " encendida.\n";
 }
 
-// Apagar la máquina.
+// Apaga la máquina.
 void Maquina::apagar() {
     encendida = false;
+
+    std::cout << "Maquina " << nombre << " apagada.\n";
 }
 
-// Consultar si está encendida.
+// Consulta si la máquina está encendida.
 bool Maquina::estaEncendida() const {
     return encendida;
 }
 
-// Consultar si está en falla.
+// Consulta si la máquina está en falla.
 bool Maquina::estaEnFalla() const {
     return enFalla;
 }
 
-// Verificar si puede procesar piezas.
+// Comprueba si la máquina puede procesar una pieza.
 bool Maquina::puedeProcesar() const {
     return encendida && !enFalla;
 }
 
-// Obtener el identificador.
+// Devuelve el identificador de la máquina.
 int Maquina::getId() const {
     return id;
 }
 
-// Obtener el nombre.
-string Maquina::getNombre() const {
+// Devuelve el nombre de la máquina.
+std::string Maquina::getNombre() const {
     return nombre;
 }
 
-// Obtener las piezas procesadas.
+// Devuelve la cantidad de piezas procesadas.
 int Maquina::getPiezasProcesadas() const {
     return piezasProcesadas;
 }
 
-// Obtener el tiempo trabajado.
+// Devuelve el tiempo total trabajado en segundos.
 int Maquina::getTiempoTrabajado() const {
     return tiempoTrabajado;
 }
 
-// Obtener la cantidad de paros.
+// Devuelve la cantidad de paros por mantenimiento.
 int Maquina::getParos() const {
     return paros;
 }
 
-// Registrar una pieza procesada.
+// Registra una pieza procesada.
 void Maquina::registrarPieza() {
     ++piezasProcesadas;
 }
 
-// Agregar tiempo de trabajo.
+// Acumula el tiempo de trabajo en segundos.
 void Maquina::agregarTiempo(int segundos) {
     if (segundos > 0) {
         tiempoTrabajado += segundos;
     }
 }
 
-// Registrar que ocurrió una falla.
+// Registra una falla en la máquina.
 void Maquina::reportarFalla() {
-    enFalla = true;
-}
+    if (!enFalla) {
+        enFalla = true;
 
-// Registrar el mantenimiento realizado.
-void Maquina::registrarMantenimiento() {
-    enFalla = false;
-    ++paros;
-}
-
-// Realizar el mantenimiento general de la máquina.
-void Maquina::realizarMantenimiento() {
-    cout << "\nIniciando mantenimiento de "
-         << nombre << "..." << endl;
-
-    registrarMantenimiento();
-
-    cout << "Mantenimiento general completado." << endl;
-    cout << "La falla ha sido resuelta." << endl;
-}
-
-// Mostrar la información general de la máquina.
-void Maquina::mostrarEstado() const {
-    cout << "\n========== ESTADO DE LA MAQUINA =========="
-         << endl;
-
-    cout << "ID: " << id << endl;
-    cout << "Nombre: " << nombre << endl;
-
-    cout << "Estado: ";
-
-    if (!encendida) {
-        cout << "Apagada";
-    } else if (enFalla) {
-        cout << "En falla";
-    } else {
-        cout << "Encendida y disponible";
+        std::cout << "FALLA: La maquina " << nombre
+                  << " ha dejado de operar.\n";
     }
+}
 
-    cout << endl;
+// Registra el mantenimiento y permite volver a operar.
+void Maquina::registrarMantenimiento() {
+    if (enFalla) {
+        ++paros;
+        enFalla = false;
 
-    cout << "Piezas procesadas: "
-         << piezasProcesadas << endl;
+        std::cout << "Mantenimiento terminado en la maquina "
+                  << nombre << ".\n";
+    }
+}
 
-    cout << "Tiempo trabajado: "
-         << tiempoTrabajado << " segundos" << endl;
+// Realiza el mantenimiento general de la máquina.
+void Maquina::realizarMantenimiento() {
+    if (enFalla) {
+        registrarMantenimiento();
+    } else {
+        std::cout << "La maquina " << nombre
+                  << " no necesita mantenimiento.\n";
+    }
+}
 
-    cout << "Paros por mantenimiento: "
-         << paros << endl;
-
-    cout << "========================================="
-         << endl;
+// Muestra el estado general de la máquina.
+void Maquina::mostrarEstado() const {
+    std::cout << "\n--- Estado de la maquina ---\n";
+    std::cout << "ID: " << id << '\n';
+    std::cout << "Nombre: " << nombre << '\n';
+    std::cout << "Encendida: "
+              << (encendida ? "Si" : "No") << '\n';
+    std::cout << "En falla: "
+              << (enFalla ? "Si" : "No") << '\n';
+    std::cout << "Piezas procesadas: "
+              << piezasProcesadas << '\n';
+    std::cout << "Tiempo trabajado: "
+              << tiempoTrabajado << " segundos\n";
+    std::cout << "Paros por mantenimiento: "
+              << paros << '\n';
 }
