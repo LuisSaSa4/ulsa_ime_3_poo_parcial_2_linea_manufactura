@@ -7,9 +7,9 @@ Proyecto del Parcial 2 de Programación Orientada a Objetos.
 | Bloque | Matrícula | Nombre | Usuario de GitHub | Máquina | Componente |
 | --- | --- | --- | --- | --- | --- |
 | 1 |24090|Luis Samano Saavedra |LuisSaSa4 |Robot Soldador |Antorcha|
-| 2 ||Diego Emilio Simental Perez|@simentalinho | | |
+| 2 |25104|Diego Emilio Simental Perez|@simentalinho |Torno CNC |Husillo |
 | 3 |25111 |Renata Lucia Farias Esquivel|renatafarias-lang |Banda Transportadora |Motor|
-| 4 | |Mary Ator Garang |marygarang-a11y | | |
+| 4 | |Mary Ator Garang |marygarang-a11y |Cortadora Laser |Tubo laser |
 | 5 |25218 |Néstor Hiram López Valdovinos |nestor-lopez-07 |Fresadora |Herramienta de corte |
 | 6 |25128 |Diego Jimenez Mena |Mena18-IME |Estación de Inspección |Sensor |
 
@@ -82,8 +82,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | Luis Samano Saavedra | [RobotSoldador](docs/mejoras/24090/RobotSoldador.md) | [Propuesta](docs/mejoras/24090/mejora.md) |
 | Diego Jiménez Mena | [Estacion_inspeccion](docs/mejoras/25128/Estacion_inspeccion.md) | [Propuesta](docs/mejoras/25128/Mejora.md) |
 | Diego Simental | | [Propuesta](docs/mejoras/25104/mejora.md) |
-| | | |
-| | | |
+| Renata Lucia Farias Esquivel | [BandaTransportadora](docs/mejoras/25111/BandaTransportadora.md) | |
 
 ## 8. Cambios a `Maquina.h`
 
